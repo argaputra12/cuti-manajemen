@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DepartemenController;
 use App\Http\Controllers\RiwayatCutiController;
 
@@ -22,6 +24,9 @@ Route::get('/', function () {
         'content' => 'Ini adalah halaman utama'
     ]);
 });
+  
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index']);
 
 Route::get('/riwayatcuti', [RiwayatCutiController::class,'index']);
 
@@ -31,4 +36,5 @@ Route::get('/pegawai', [PegawaiController::class,'index']);
 
 Route::get('/tambahpegawai', [PegawaiController::class,'tambahpegawaiform']);
 Route::post('/insertdata', [PegawaiController::class,'insertdata']);
+
 
