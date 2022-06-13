@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 * {
   padding: 0;
@@ -242,12 +242,13 @@ input:checked ~ div .hb:last-child {
   cursor: pointer;
 }
 .username {
+  color: #2e2e2e;
   width: 130px;
   height: 17px;
   display: inline-block;
   font-weight: 500;
-  font-size: 0.8em;
-  overflow: hidden;
+  font-size: 0.75rem;
+  /* overflow-x: hidden; */
   white-space: nowrap;
   text-overflow: ellipsis;
   pointer-events: none;

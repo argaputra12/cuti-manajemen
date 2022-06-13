@@ -25,7 +25,7 @@
       <div class="welcome-text disp-flex flex-col">
         <span>Selamat Datang!</span>
         @auth
-        <span>{{ auth()->user()->nama }}</span>
+        <span>{{ ucwords(strtolower(auth()->user()->nama)) }}</span>
         
         @endauth
       </div>
@@ -71,19 +71,21 @@
                     <td>{{ $item->tanggal_mulai }}</td>
                     <td>{{ $item->tanggal_selesai }}</td>
                     <td>{{ $item->status_cuti }}</td>
+                    <td></td>
                   </tr>
-                @endforeach
-              @else
-                <tr>
-                  <td><br></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  @endforeach
+                  @else
+                  <tr>
+                    <td><br></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
               @endif
             </tbody>

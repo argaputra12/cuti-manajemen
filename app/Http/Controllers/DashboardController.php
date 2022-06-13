@@ -42,6 +42,7 @@ class DashboardController extends Controller
 
         
         // dd($riwayat_cuti);
+
         return view('adminDashboard', compact('riwayat_cuti'));
     }
     

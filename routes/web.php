@@ -22,7 +22,7 @@ use Illuminate\Auth\Middleware\IsAdmin;
 */
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard')->middleware('is_admin');
+Route::get('/adminDashboard', [DashboardController::class, 'admin'])->name('admin.dashboard')->middleware('is_admin');
 Route::get('/profile', [DashboardController::class, 'profile'])->middleware('auth');
 
 

@@ -65,7 +65,7 @@
         <!-- right corner user profile dropdown  -->
       <div class="top-right-navbar" onclick="profileDropdwn()">
         <img src="./assets/img/user-placeholder.png" alt="" srcset="" class="user-icon">
-          <span class="username">{{ auth()->user()->nama }}</span>
+          <span class="username">{{ explode(" ", ucwords(strtolower(Auth::user()->nama)))[0] }}</span>
           <i
             class="fa-solid fa-angle-down"              
             style="position: relative; right: -8px; top: 1px; pointer-events: none;">

@@ -25,7 +25,7 @@
       <div class="welcome-text disp-flex flex-col">
         <span>Selamat Datang!</span>
         @auth
-        <span>{{ auth()->user()->nama }}</span>
+        <span>{{ ucwords(strtolower(Auth::user()->nama)) }}</span>
         
         @endauth
       </div>
@@ -59,29 +59,28 @@
             <tbody>
               
               @auth
-              @foreach ($riwayat_cuti as $item)
-                  <tr>
-                    <td>{{  $loop->iteration}}</td>
-                    <td>{{ Auth::user()->nama }}</td>
-                    <td>{{ $jenis_cuti[(int)$item->jenis_cuti_id-1]->nama}}</td>
-                    <td>{{ $item->alasan_cuti }}</td>
-                    <td>{{ $item->durasi_cuti }} Hari</td>
-                    <td>{{ $item->tanggal_mulai }}</td>
-                    <td>{{ $item->tanggal_selesai }}</td>
-                    <td>{{ $item->status_cuti }}</td>
-                  </tr>
-              @endforeach
+              @if($riwayat_cuti->count() > 0)
+                @foreach ($riwayat_cuti as $item)
+                    <tr>
+                      <td>{{  $loop->iteration}}</td>
+                      <td>{{ ucwords(strtolower(Auth::user()->nama)) }}</td>
+                      <td>{{ $jenis_cuti[(int)$item->jenis_cuti_id-1]->nama}}</td>
+                      <td>{{ $item->alasan_cuti }}</td>
+                      <td>{{ $item->durasi_cuti }} Hari</td>
+                      <td>{{ $item->tanggal_mulai }}</td>
+                      <td>{{ $item->tanggal_selesai }}</td>
+                      <td>{{ $item->status_cuti }}</td>
+                    </tr>
+                @endforeach
               @else
-                  <tr>
-                    <td><br></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
+                <tr>
+                  <td colspan="8">Tidak ada data</td>
+                </tr>
+              @endif
+              @else
+              <tr>
+                <td colspan="8">Tidak ada data</td>
+              </tr>
                   @endauth
             </tbody>
           </table>
