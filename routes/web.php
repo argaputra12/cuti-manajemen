@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Middleware\IsAdmin;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ApprovalCutiController;
 use App\Http\Controllers\PengajuanCutiController;
-use Illuminate\Auth\Middleware\IsAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,6 @@ use Illuminate\Auth\Middleware\IsAdmin;
 */
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/adminDashboard', [DashboardController::class, 'admin'])->name('admin.dashboard')->middleware('is_admin');
 Route::get('/profile', [DashboardController::class, 'profile'])->middleware('auth');
 
 
@@ -35,6 +35,8 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register')
 
 Route::get('/pengajuan_cuti', [PengajuanCutiController::class, 'index'])->middleware('auth')->name('pengajuan_cuti');
 Route::post('/pengajuan_cuti', [PengajuanCutiController::class, 'store'])->name('ajukan_cuti');
+
+Route::get('/approvalCuti', [ApprovalCutiController::class, 'index'])->name('admin.approvalCuti')->middleware('is_admin');
 
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

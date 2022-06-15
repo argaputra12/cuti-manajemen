@@ -17,7 +17,7 @@
 @section('content')
 <div class="main-content height-80">
     <!-- taruh sini -->
-    <div class="box-content algn-mid flex-col">
+    {{-- <div class="box-content algn-mid flex-col">
       <!-- atau sini -->
       <div class="dashboard-banner"></div>
       <img src="./assets/img/user-placeholder.png" alt="" srcset="" class="user-placeholder">
@@ -29,9 +29,9 @@
         
         @endauth
       </div>
-    </div>
+    </div> --}}
     <div class="box-content flex-col">
-      <span class="fo-w-med fo-st-italic ">Daftar Pengajuan Cuti Anda <span class="fo-sz-p6 "> Daftar Menunggu approval cuti dari atasan
+      <span class="fo-w-med fo-st-italic ">Daftar Pengajuan Cuti Anggota <span class="fo-sz-p6 "> 
       </span></span>
       <div class="daftar-container">
         <label>Show</label>
@@ -76,16 +76,7 @@
                   @endforeach
                   @else
                   <tr>
-                    <td><br></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="8">Tidak ada data</td>
                 </tr>
               @endif
             </tbody>

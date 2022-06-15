@@ -37,13 +37,6 @@ class DashboardController extends Controller
         return view('profile', compact('nama_department'));
     }
 
-    public function admin(){
-        $riwayat_cuti = DB::table('riwayat_cutis')->select('user_id', 'jenis_cuti_id', 'status_cuti', 'alasan_cuti', 'durasi_cuti', 'tanggal_mulai', 'tanggal_selesai')->get();
 
-        
-        // dd($riwayat_cuti);
-
-        return view('adminDashboard', compact('riwayat_cuti'));
-    }
     
 }

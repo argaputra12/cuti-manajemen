@@ -38,7 +38,9 @@
             Pengajuan Cuti
           </a><i
           class="fa-solid fa-calendar-days fa-lg collapse-icon"></i>
-          <a href="/approval_cuti.html">
+
+          @if(Auth::user()->is_admin == 1)
+          <a href="{{ route('admin.approvalCuti') }}">
             <i
               class="fa-solid fa-bell fa-lg move-icon"
               style="margin-right: 0.4em; margin-left: 0.1em"
@@ -47,6 +49,8 @@
             Approval Cuti
           </a><i
           class="fa-solid fa-bell fa-lg collapse-icon"></i>
+          @endif
+
           <a href="">
             <i
               class="fa-solid fa-list fa-lg move-icon"

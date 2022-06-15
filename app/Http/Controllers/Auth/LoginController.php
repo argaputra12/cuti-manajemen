@@ -50,11 +50,7 @@ class LoginController extends Controller
             // Authentication passed...
             $request->session()->regenerate();
 
-            if (auth()->user()->is_admin == 1) {
-                return redirect()->route('admin.dashboard');
-            }else{
-                return redirect()->route('dashboard');
-            }
+            return redirect()->route('dashboard');
         }
 
         return back()->with('loginError','Email atau password salah.');
