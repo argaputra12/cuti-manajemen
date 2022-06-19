@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\KonfigurasiCuti;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\DepartmentSeeder;
@@ -24,6 +25,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(DepartmentSeeder::class);
+        $this->call(KonfigurasiCutiSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(JenisCutiSeeder::class);
     }
 }

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -68,7 +69,13 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
+    {   
+        // Jumalh cuti maksimal tahun ini
+        $jumlah_cuti_maksimum = DB::table('konfigurasi_cutis')->where('tahun', now()->format('Y'))->first()->jumlah_cuti_maksimum;
+
+        // Jumlah cuti beersama tahun ini
+        $jumlah_cuti_bersama = DB::table('konfigurasi_cutis')->where('tahun', now()->format('Y'))->first()->jumlah_cuti_bersama;
+
         return User::create([
             'nip' => $data['nip'],
             'nik' => $data['nik'],
@@ -77,8 +84,8 @@ class RegisterController extends Controller
             'jenis_kelamin' => $data['jenis_kelamin'],
             'department_id' => $data['department_id'],
             'email' => $data['email'],
-
             'password' => Hash::make($data['password']),
+            'sisa_cuti' => $jumlah_cuti_maksimum-$jumlah_cuti_bersama,
         ]);
 
     }

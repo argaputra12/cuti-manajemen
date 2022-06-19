@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,8 @@ Route::get('/pengajuan_cuti', [PengajuanCutiController::class, 'index'])->middle
 Route::post('/pengajuan_cuti', [PengajuanCutiController::class, 'store'])->name('ajukan_cuti');
 
 Route::get('/approvalCuti', [ApprovalCutiController::class, 'index'])->name('admin.approvalCuti')->middleware('is_admin');
+Route::post('/approvalCuti.approved', [ApprovalCutiController::class, 'approved'])->name('admin.approvalCuti.approved')->middleware('is_admin');
+Route::post('/approvalCuti.refused', [ApprovalCutiController::class, 'refused'])->name('admin.approvalCuti.refused')->middleware('is_admin');
 
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

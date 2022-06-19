@@ -26,6 +26,11 @@
         <span>Pengajuan Cuti</span>
     </div>
     <div class="form-wrapper">
+       @if (session()->has('error'))
+        <div class="alert alert-danger">
+            {{ session()->get('error') }}
+        </div>
+       @endif
         <form class="form-control" action="/pengajuan_cuti" method="post">
           @csrf
           <div class="form-group">
@@ -56,6 +61,7 @@
           <div class="form-group">
               <label for="tanggal_selesai">Tanggal selesai cuti</label>
               <input type="date" name="tanggal_selesai">
+              {{-- <input type="hidden" name="konfigurasi_cutis_id" value={{ DB::table('konfigurasi_cutis')->where('tahun', now()->format('Y'))->first()->id }}> --}}
           </div>
           <input type="submit" value="Ajukan Cuti" class="btn ajukan-cuti">
         </form>

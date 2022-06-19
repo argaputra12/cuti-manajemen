@@ -66,6 +66,10 @@
         <h3>Email</h3>
         <div id="user-name">{{ auth()->user()->email }}</div>
       </div>
+      <div class="profile-name">
+        <h3>Sisa Cuti</h3>
+        <div id="user-name">{{ auth()->user()->sisa_cuti }}</div>
+      </div>
     </div>
   </div>
 </div>

@@ -469,3 +469,28 @@ tbody tr td {
   font-style: italic;
   font-size: 0.8em;
 }
+.bg-none{
+  background: none;
+}
+.p-0{
+  padding: 0;
+}
+.border-none{
+  border: none;
+}
+.pointer{
+  cursor: pointer;
+}
+.form-button{
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+.px-2{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.px-5{
+  padding-left: 5px;
+  padding-right: 5px;
+}

@@ -50,7 +50,7 @@
             @error('email')
             <p class="mt-2 text-pink-800 text-sm">
                 Format email salah atau email telah digunakan
-              </p>
+            </p>
             @enderror
             <div class="field h-[50px] w-[100%] mt-[20px] relative">
                 <input class="h-[100%] w-[100%] text-[17px] pl-[20px] border-solid border-[1px] border-gray-600 rounded-[25px] @error('password') invalid:border-pink-800 invalid:text-pink-800 @enderror" type="password" required placeholder="Password" name="password"></input>
