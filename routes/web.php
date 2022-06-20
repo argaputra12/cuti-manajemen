@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ApprovalCutiController;
 use App\Http\Controllers\PengajuanCutiController;
+use App\Http\Controllers\UpdateUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,8 @@ Route::get('/pengajuan_cuti', [PengajuanCutiController::class, 'index'])->middle
 Route::post('/pengajuan_cuti', [PengajuanCutiController::class, 'store'])->name('ajukan_cuti');
 
 Route::get('/approvalCuti', [ApprovalCutiController::class, 'index'])->name('admin.approvalCuti')->middleware('is_admin');
+
+Route::post('/update_user', [UpdateUserController::class, 'update'])->name('update_user');
 
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

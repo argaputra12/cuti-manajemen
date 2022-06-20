@@ -4,7 +4,7 @@
 
 <body class="nav-body">
     <!-- nav bar -->
-    <input type="checkbox" id="checkbox-toggle" onclick="openNav()" checked />
+    <input type="checkbox" id="checkbox-toggle" onclick="openNav()" checked class="hide-checkbox" />
     <div class="hb-container">
         <span class="hb"></span>
         <span class="hb"></span>

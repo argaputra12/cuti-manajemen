@@ -35,7 +35,7 @@
   transform: none;
 }
 
-.nav-body input {
+.nav-body .hide-checkbox {
   opacity: 0;
   display: block;
   width: 45px;
