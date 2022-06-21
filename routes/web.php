@@ -41,5 +41,5 @@ Route::get('/approvalCuti', [ApprovalCutiController::class, 'index'])->name('adm
 Route::post('/approvalCuti.approved', [ApprovalCutiController::class, 'approved'])->name('admin.approvalCuti.approved')->middleware('is_admin');
 Route::post('/approvalCuti.refused', [ApprovalCutiController::class, 'refused'])->name('admin.approvalCuti.refused')->middleware('is_admin');
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
