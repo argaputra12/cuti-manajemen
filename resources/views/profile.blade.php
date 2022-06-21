@@ -126,7 +126,7 @@
             </div>
             <div class="profile-name">
                 <h3>Jenis kelamin</h3>
-                <div id="user-name" style="text-transform: capitalize;">{{ auth()->user()->jenis_kelamin }}</div>
+                <div id="user-name">{{ auth()->user()->jenis_kelamin }}</div>
             </div>
             <div class="profile-name">
                 <h3>Jurusan</h3>
@@ -135,6 +135,10 @@
             <div class="profile-name">
                 <h3>Email</h3>
                 <div id="user-name">{{ auth()->user()->email }}</div>
+            </div>
+            <div class="profile-name">
+                <h3>Sisa Cuti</h3>
+                <div id="user-name">{{ auth()->user()->sisa_cuti }}</div>
             </div>
         </div>
     </div>

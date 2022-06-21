@@ -64,14 +64,30 @@
                 @foreach ($riwayat_cuti as $item)
                   <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{ \App\Models\User::where('id', $item->user_id)->pluck('nama')->first()}}</td>
-                    <td>{{ $item->jenis_cuti_id}}</td>
+                    <td>{{ ucwords(strtolower(\App\Models\User::where('id', $item->user_id)->pluck('nama')->first()))}}</td>
+                    <td>{{ $jenis_cuti[(int)$item->jenis_cuti_id-1]->nama}}</td>
                     <td>{{ $item->alasan_cuti }}</td>
                     <td>{{ $item->durasi_cuti }} Hari</td>
                     <td>{{ $item->tanggal_mulai }}</td>
                     <td>{{ $item->tanggal_selesai }}</td>
                     <td>{{ $item->status_cuti }}</td>
-                    <td></td>
+                    <td class="form-button">
+                      <form action="{{ route('admin.approvalCuti.approved') }}" method="post" >
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $item->id }}">
+                        <button type="submit" name="submit" value="Submit" class="bg-none px-2 border-none pointer">
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                      </form>
+
+                      <form action="{{ route('admin.approvalCuti.refused') }}" method="post" >
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $item->id }}">
+                        <button type="submit" name="submit" value="Submit" class="bg-none px-5 border-none pointer">
+                          <i class="fa-solid fa-xmark"></i>
+                        </button>
+                      </form>
+                    </td>
                   </tr>
                   @endforeach
                   @else

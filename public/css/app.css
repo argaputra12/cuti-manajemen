@@ -10730,9 +10730,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     max-width: 1536px;
   }
 }
-.visible {
-  visibility: visible;
-}
 .relative {
   position: relative;
 }
@@ -10772,9 +10769,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .box-content {
   box-sizing: content-box;
-}
-.block {
-  display: block;
 }
 .flex {
   display: flex;

@@ -26,6 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'department_id',
+        'sisa_cuti'
     ];
 
     /**
@@ -57,10 +58,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\RiwayatCuti');
     }
 
-    function jenisCuti()
-    {
-        return $this->hasMany('App\Models\JenisCuti');
-    }
+    
+    
 }
 
 

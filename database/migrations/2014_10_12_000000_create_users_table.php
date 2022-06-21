@@ -15,16 +15,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nik');
-            $table->string('nip');
-            $table->string('nama');
-            $table->string('alamat');
-            $table->string('jenis_kelamin');
-            $table->unsignedBigInteger('department_id');
+            $table->string('nik')->nullable();
+            $table->string('nip')->nullable();
+            $table->string('nama')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('jenis_kelamin')->nullable();
+            $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments');
             $table->string('email')->unique();
             $table->string('password');
             $table->set('is_admin', [1,0])->default(0);
+            $table->integer('sisa_cuti')->nullable()->m;
             $table->rememberToken();
             $table->timestamps();
         });

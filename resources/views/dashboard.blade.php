@@ -69,7 +69,17 @@
                       <td>{{ $item->durasi_cuti }} Hari</td>
                       <td>{{ $item->tanggal_mulai }}</td>
                       <td>{{ $item->tanggal_selesai }}</td>
-                      <td>{{ $item->status_cuti }}</td>
+                      @if($item->status_cuti == 'Approved')
+                      <td style="color: green">
+                        {{ $item->status_cuti }}
+                      @elseif($item->status_cuti == 'Refused')
+                      <td style="color: red">
+                        {{ $item->status_cuti }}           
+                      @else
+                      <td>
+                        {{ $item->status_cuti }}               
+                      @endif
+                      </td>
                     </tr>
                 @endforeach
               @else

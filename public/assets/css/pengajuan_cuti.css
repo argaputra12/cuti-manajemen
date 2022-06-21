@@ -497,3 +497,7 @@
     .form-group input::placeholder{
         color: #828282;
     }
+
+    .alert{
+      color: rgb(201, 41, 41);
+    }
