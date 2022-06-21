@@ -59,7 +59,17 @@
         @auth
             <!-- right corner user profile dropdown  -->
             <div class="top-right-navbar" onclick="profileDropdwn()">
-                <img src="./assets/img/user-placeholder.png" alt="" srcset="" class="user-icon">
+                @auth
+                    @if (Auth::user()->image)
+                        <img src="{{ asset('/storage/images/' . Auth::user()->image) }}" alt="profile_image"
+                            class="user-icon">
+                    @else
+                        <img src="assets/img/user-placeholder.png" alt="user" class="user-icon" />
+                    @endif
+                @else
+                    <img src="./assets/img/user-placeholder.png" alt="" srcset="" class="user-icon">
+                @endauth
+
                 <span class="username">{{ explode(' ', ucwords(strtolower(Auth::user()->nama)))[0] }}</span>
                 <i class="fa-solid fa-angle-down" style="position: relative; right: -8px; top: 1px; pointer-events: none;">
                 </i>

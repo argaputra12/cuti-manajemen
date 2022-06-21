@@ -269,6 +269,8 @@ input:checked ~ div .hb:last-child {
   width: 38px;
   margin-right: 10px;
   pointer-events: none;
+  padding: 1px;
+  border-radius: 4em;
 }
 .prof-dropdown {
   display: none;

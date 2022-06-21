@@ -26,7 +26,8 @@ class User extends Authenticatable
         'email',
         'password',
         'department_id',
-        'sisa_cuti'
+        'sisa_cuti',
+        'image'
     ];
 
     /**
@@ -57,9 +58,4 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\RiwayatCuti');
     }
-
-    
-    
 }
-
-

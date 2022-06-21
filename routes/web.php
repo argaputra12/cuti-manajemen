@@ -43,6 +43,7 @@ Route::post('/approvalCuti.approved', [ApprovalCutiController::class, 'approved'
 Route::post('/approvalCuti.refused', [ApprovalCutiController::class, 'refused'])->name('admin.approvalCuti.refused')->middleware('is_admin');
 
 Route::post('/update_user', [UpdateUserController::class, 'update'])->name('update_user');
+Route::post('/update_photo', [UpdateUserController::class, 'photo'])->name('update_photo');
 
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

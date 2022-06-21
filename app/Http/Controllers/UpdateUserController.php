@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class UpdateUserController extends Controller
 {
@@ -37,15 +38,17 @@ class UpdateUserController extends Controller
 
         return back();
     }
-    // protected function create(array $data)
-    // {
-    //     return User::create([
-    //         'nip' => $data['nip'],
-    //         'nik' => $data['nik'],
-    //         'nama' => $data['nama'],
-    //         'alamat' => $data['alamat'],
-    //         'jenis_kelamin' => $data['jenis_kelamin'],
-    //         'department_id' => $data['department_id'],
-    //     ]);
-    // }
+    public function photo(Request $request)
+    {
+        $userId = Auth::id();
+        $user = User::findOrFail($userId);
+        if ($request->hasFile('image')) {
+            $filename = $request->image->getClientOriginalName();
+            $request->image->storeAs('images', $filename, 'public');
+            $user->update(['image' => $filename]);
+        }
+        $user->save();
+        /* Store $imageName name in DATABASE from HERE */
+        return back();
+    }
 }

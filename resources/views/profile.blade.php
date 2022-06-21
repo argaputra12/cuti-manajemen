@@ -28,14 +28,16 @@
             </button>
         </div>
         <div class="pop-up-container-photo" id="edit-photo">
-            <div class="drop-zone">
-                <span class="drop-zone__prompt">Drop file here or click to upload</span>
-                <input type="file" name="myFile" class="drop-zone__input" />
-            </div>
-            <button type="button" id="yes-button" onclick="closePopupPhoto()"><i
-                    class="fa-solid fa-check"></i>Save</button>
-            <button type="button" id="cancel-button" onclick="closePopupPhoto()"><i
-                    class="fa-solid fa-xmark"></i>Cancel</button>
+            <form action="{{ route('update_photo') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="drop-zone">
+                    <span class="drop-zone__prompt">Drop file here or click to upload</span>
+                    <input type="file" name="image" id="image" class="drop-zone__input" />
+                </div>
+                <button type="submit" id="yes-button"><i class="fa-solid fa-check"></i>Save</button>
+                <button type="button" id="cancel-button" onclick="closePopupPhoto()"><i
+                        class="fa-solid fa-xmark"></i>Cancel</button>
+            </form>
         </div>
         <div class="pop-up-container-profile" id="edit-profile">
             <div class="edit-profile-container">
@@ -105,7 +107,15 @@
                 <h1>Profile</h1>
             </div>
             <div class="profile-img">
-                <img src="assets/img/user-placeholder.png" alt="user" />
+                @auth
+                    @if (Auth::user()->image)
+                        <img src="{{ asset('/storage/images/' . Auth::user()->image) }}" alt="profile_image">
+                    @else
+                        <img src="assets/img/user-placeholder.png" alt="user" />
+                    @endif
+                @else
+                    <img src="assets/img/user-placeholder.png" alt="user" />
+                @endauth
                 <h2>{{ auth()->user()->nama }}</h2>
             </div>
             <div class="profile-name">
