@@ -24,7 +24,8 @@ return new class extends Migration
             $table->foreign('department_id')->references('id')->on('departments');
             $table->string('email')->unique();
             $table->string('password');
-            $table->set('is_admin', [1,0])->default(0);
+            $table->string('image')->default('user.png');
+            $table->set('is_admin', [1, 0])->default(0);
             $table->integer('sisa_cuti')->nullable()->m;
             $table->rememberToken();
             $table->timestamps();

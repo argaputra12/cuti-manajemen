@@ -1,10 +1,10 @@
 function openNav() {
-  const tes = document.getElementById("checkbox-toggle");
-  console.log(tes.checked);
-  if (tes.checked == true) {
-    document.getElementsByClassName("r-ctn-wdth")[0].style.marginLeft = "10px";
+  const hb = document.getElementById("checkbox-toggle");
+  // console.log(tes.checked);
+  if (hb.checked == true) {
+    document.getElementsByClassName("r-ctn-wdth")[0].style.marginLeft = "260px";
   } else {
-    document.getElementsByClassName("r-ctn-wdth")[0].style.marginLeft = "10px";
+    document.getElementsByClassName("r-ctn-wdth")[0].style.marginLeft = "50px";
   }
 }
 function profileDropdwn() {
