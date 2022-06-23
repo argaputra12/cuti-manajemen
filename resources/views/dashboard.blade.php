@@ -8,7 +8,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="assets/css/dashboardprofile.css" />
         <link rel="stylesheet" type="text/css" href="assets/css/fonts.css">
+
+        {{-- ini tailwindcss --}}
         {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+        
         <script type="text/javascript" src="assets/js/dashboard.js"></script>
         <script src="https://kit.fontawesome.com/6ba9b8f714.js" crossorigin="anonymous"></script>
         <title>SIPALING | Dashboard</title>
@@ -24,7 +27,7 @@
             {{-- <img src="./assets/img/user-placeholder.png" alt="" srcset="" class="user-placeholder"> --}}
             @auth
                 @if (Auth::user()->image)
-                    <img src="{{ asset('/storage/images/' . Auth::user()->image) }}" alt="profile_image"
+                    <img src="{{ asset(Auth::user()->image) }}" alt="profile_image"
                         class="user-placeholder">
                 @else
                     <img src="assets/img/user-placeholder.png" alt="user" class="user-placeholder" />
@@ -94,25 +97,22 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                @else
+                                    @else
                                     <tr>
                                         <td colspan="8">Tidak ada data</td>
                                     </tr>
-                                @endif
-                            @else
-                                <tr>
-                                    <td colspan="8">Tidak ada data</td>
-                                </tr>
-                            @endauth
-                        </tbody>
-                    </table>
-                </div>
+                                    @endif
+                                    @else
+                                    <tr>
+                                        <td colspan="8">Tidak ada data</td>
+                                    </tr>
+                                    @endauth
+                                </tbody>
+                                {{-- {{ $riwayat_cuti->links() }} --}}
+                            </table>
+                        </div>
                 <div class="daftar-footer disp-flex flex-row">
-                    <span>Showing 1 to 1 of 1 entries</span>
-                    <div class="btn-query">
-                        <a href="" class="btn">Prev</a>
-                        <a href="" class="btn">Next</a>
-                    </div>
+                    {{ $riwayat_cuti->links() }}
                 </div>
             </div>
         </div>

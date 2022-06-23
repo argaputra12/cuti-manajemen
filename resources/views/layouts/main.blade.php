@@ -11,7 +11,7 @@
         <span class="hb"></span>
     </div>
     <div class="container-sidenavbar" id="side-navbar">
-        <div class="disp-flex flex-row center-vertical">
+        <div class="flex flex-row items-center">
             <div class="title-container center-vertical">
                 <img src="./assets/logo/logo.png" alt="" /><span>SIPALING</span>
             </div>
@@ -61,20 +61,20 @@
             <div class="top-right-navbar" onclick="profileDropdwn()">
                 @auth
                     @if (Auth::user()->image)
-                        <img src="{{ asset('/storage/images/' . Auth::user()->image) }}" alt="profile_image"
+                        <img src="{{ asset(Auth::user()->image) }}" alt="profile_image"
                             class="user-icon">
                     @else
-                        <img src="assets/img/user-placeholder.png" alt="user" class="user-icon" />
+                        <img src="{{ asset('assets/img/user-placeholder.png') }}" alt="user" class="user-icon" />
                     @endif
                 @else
-                    <img src="./assets/img/user-placeholder.png" alt="" srcset="" class="user-icon">
+                    <img src="{{ asset('assets/img/user-placeholder.png') }}" alt="" srcset="" class="user-icon">
                 @endauth
 
                 <span class="username">{{ explode(' ', ucwords(strtolower(Auth::user()->nama)))[0] }}</span>
                 <i class="fa-solid fa-angle-down" style="position: relative; right: -8px; top: 1px; pointer-events: none;">
                 </i>
                 <ul class="prof-dropdown" id="profDropdown">
-                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="{{ route('profile') }}">Profile</a></li>
                     <li>
                         <form action={{ route('logout') }} method="POST" id="logout-form">
                             @csrf

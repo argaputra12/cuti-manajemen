@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <input type="hidden" name='user_id' value={{ Auth::user()->id }}>
                         <label for="">Jenis Cuti</label>
-                        <select name="jenis_cuti_id" id="jenis-cuti">
+                        <select name="jenis_cuti_id" id="jenis-cuti" required>
                             <option value="1">Cuti Besar</option>
                             <option value="2">Cuti Tahunan</option>
                             <option value="3">Cuti Sakit</option>
@@ -43,24 +43,46 @@
                             <option value="6">Cuti di luar tanggungan perusahaan</option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <input type="hidden" name='status_cuti' value="Waiting">
                         <label for="alasan_cuti">Alasan cuti</label>
-                        <input type="text" name="alasan_cuti">
-                    </div>
-                    <div class="form-group">
-                        <label for="durasi_cuti">Durasi cuti</label>
-                        <input type="number" placeholder="Hari" name="durasi_cuti" min="1">
-                    </div>
-                    <div class="form-group">
-                        <label for="tanggal_mulai">Tanggal mulai cuti</label>
-                        <input type="date" name="tanggal_mulai">
-                    </div>
-                    <div class="form-group">
-                        <label for="tanggal_selesai">Tanggal selesai cuti</label>
-                        <input type="date" name="tanggal_selesai">
-                        {{-- <input type="hidden" name="konfigurasi_cutis_id" value={{ DB::table('konfigurasi_cutis')->where('tahun', now()->format('Y'))->first()->id }}> --}}
-                    </div>
+                        <input type="text" name="alasan_cuti" required>
+                        @error('alasan_cuti')
+                        <p class="mt-2 text-pink-800 text-sm">
+                            Input field harus diisi!
+                        </p>
+                        @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="durasi_cuti">Durasi cuti</label>
+                    <input type="number" placeholder="Hari" name="durasi_cuti" min="1" required>
+                    @error('durasi_cuti')
+                    <p class="mt-2 text-pink-800 text-sm">
+                        Input field harus diisi!
+                    </p>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="tanggal_mulai">Tanggal mulai cuti</label>
+                    <input type="date" name="tanggal_mulai" required>
+                    @error('tanggal_mulai')
+                    <p class="mt-2 text-pink-800 text-sm">
+                        Input field harus diisi!
+                    </p>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="tanggal_selesai">Tanggal selesai cuti</label>
+                    <input type="date" name="tanggal_selesai" required>
+                    {{-- <input type="hidden" name="konfigurasi_cutis_id" value={{ DB::table('konfigurasi_cutis')->where('tahun', now()->format('Y'))->first()->id }}> --}}
+                    @error('tanggal_selesai')
+                    <p class="mt-2 text-pink-800 text-sm">
+                        Input field harus diisi!
+                    </p>
+                    @enderror
+                </div>
                     <input type="submit" value="Ajukan Cuti" class="btn ajukan-cuti">
                 </form>
             </div>

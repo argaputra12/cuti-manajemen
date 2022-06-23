@@ -36,16 +36,16 @@ class PengajuanCutiController extends Controller
         // dd($inserted_data);
 
         // Jika sisa cuti lebih dari 0
-        if(Auth::user()->sisa_cuti - $request->durasi_cuti > 0):
-           
+        if(Auth::user()->sisa_cuti - $request->durasi_cuti >= 0):
+
             // Update sisa cuti dari user
             DB::table('users')->where('id', Auth::user()->id)->update([
                 'sisa_cuti' => DB::table('users')->where('id', Auth::user()->id)->first()->sisa_cuti - $request->durasi_cuti,
             ]);
             RiwayatCuti::create($inserted_data);
             return redirect('/');
-        endif;  
-        
+        endif;
+
         // Jika sisa cuti 0
         return redirect(route('pengajuan_cuti'))->with('error', 'Sisa cuti anda tidak mencukupi');
 

@@ -42,12 +42,18 @@ class UpdateUserController extends Controller
     {
         $userId = Auth::id();
         $user = User::findOrFail($userId);
+        $file = $request->image;
         if ($request->hasFile('image')) {
-            $filename = $request->image->getClientOriginalName();
-            $request->image->storeAs('images', $filename, 'public');
+            $filename = $file->storeAs('images', $userId . 'profile.png');
+            // dd($filename);
+            // $request->image->storeAs('images', $filename, 'public');
+            $destinationPath = public_path('/images');
+            $file->move($destinationPath, $filename);
             $user->update(['image' => $filename]);
         }
         $user->save();
+
+       
         /* Store $imageName name in DATABASE from HERE */
         return back();
     }

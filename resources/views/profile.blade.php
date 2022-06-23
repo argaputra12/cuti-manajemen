@@ -109,14 +109,14 @@
             <div class="profile-img">
                 @auth
                     @if (Auth::user()->image)
-                        <img src="{{ asset('/storage/images/' . Auth::user()->image) }}" alt="profile_image">
+                        <img src="{{ asset(Auth::user()->image) }}" alt="profile_image">
                     @else
-                        <img src="assets/img/user-placeholder.png" alt="user" />
+                        <img src="{{ asset("assets/img/user-placeholder.png") }}" alt="user" />
                     @endif
                 @else
-                    <img src="assets/img/user-placeholder.png" alt="user" />
+                    <img src="{{ asset("assets/img/user-placeholder.png") }}" alt="user" />
                 @endauth
-                <h2>{{ auth()->user()->nama }}</h2>
+                <h2>{{ explode(' ', ucwords(strtolower(Auth::user()->nama)))[0] }}</h2>
             </div>
             <div class="profile-name">
                 <h3>NIK</h3>
@@ -148,7 +148,7 @@
             </div>
             <div class="profile-name">
                 <h3>Sisa Cuti</h3>
-                <div id="user-name">{{ auth()->user()->sisa_cuti }}</div>
+                <div id="user-name">{{ auth()->user()->sisa_cuti }} Hari</div>
             </div>
         </div>
     </div>

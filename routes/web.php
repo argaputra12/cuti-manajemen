@@ -25,7 +25,7 @@ use App\Http\Controllers\UpdateUserController;
 */
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/profile', [DashboardController::class, 'profile'])->middleware('auth');
+Route::get('/profile', [DashboardController::class, 'profile'])->middleware('auth')->name('profile');
 
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
