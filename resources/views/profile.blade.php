@@ -10,7 +10,7 @@
         {{-- <link rel="stylesheet" href="assets/css/fonts.css" type="text/css" /> --}}
 
         {{-- ini tailwindcss --}}
-        {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/profile.css" type="text/css" />
         <script src="assets/js/dashboard.js"></script>
         <script src="https://kit.fontawesome.com/6ba9b8f714.js" crossorigin="anonymous"></script>
@@ -114,10 +114,10 @@
                     @if (Auth::user()->image)
                         <img src="{{ asset(Auth::user()->image) }}" alt="profile_image">
                     @else
-                        <img src="{{ asset("assets/img/user-placeholder.png") }}" alt="user" />
+                        <img src="{{ asset('assets/img/user-placeholder.png') }}" alt="user" />
                     @endif
                 @else
-                    <img src="{{ asset("assets/img/user-placeholder.png") }}" alt="user" />
+                    <img src="{{ asset('assets/img/user-placeholder.png') }}" alt="user" />
                 @endauth
                 <h2>{{ explode(' ', ucwords(strtolower(Auth::user()->nama)))[0] }}</h2>
             </div>
