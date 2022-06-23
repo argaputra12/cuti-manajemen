@@ -7,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="assets/css/dashboardprofile.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/fonts.css" >
+
+    {{-- ini tailwindcss --}}
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    
     <script type="text/javascript" src="assets/js/dashboard.js"></script>
     <script src="https://kit.fontawesome.com/6ba9b8f714.js" crossorigin="anonymous"></script>
     <title>SIPALING | Dashboard</title>
@@ -26,12 +29,12 @@
         <span>Selamat Datang!</span>
         @auth
         <span>{{ ucwords(strtolower(auth()->user()->nama)) }}</span>
-        
+
         @endauth
       </div>
     </div> --}}
     <div class="box-content flex-col">
-      <span class="fo-w-med fo-st-italic ">Daftar Pengajuan Cuti Anggota <span class="fo-sz-p6 "> 
+      <span class="fo-w-med fo-st-italic ">Daftar Pengajuan Cuti Anggota <span class="fo-sz-p6 ">
       </span></span>
       <div class="daftar-container">
         <label>Show</label>
@@ -43,7 +46,7 @@
         </select>
         <label>Entries</label>
         <div class="daftar-table">
-          
+
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -59,7 +62,7 @@
               </tr>
             </thead>
             <tbody>
-              
+
               @if(Auth::user()->is_admin == 1)
                 @foreach ($riwayat_cuti as $item)
                   <tr>
@@ -100,7 +103,7 @@
         </div>
         <div class="daftar-footer disp-flex flex-row">
           <span >Showing 1 to 1 of 1 entries</span>
-          <div class="btn-query">            
+          <div class="btn-query">
             <a href="" class="btn">Prev</a>
             <a href="" class="btn">Next</a>
           </div>

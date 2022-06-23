@@ -11,7 +11,7 @@
 
         {{-- ini tailwindcss --}}
         {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-        
+
         <script type="text/javascript" src="assets/js/dashboard.js"></script>
         <script src="https://kit.fontawesome.com/6ba9b8f714.js" crossorigin="anonymous"></script>
         <title>SIPALING | Dashboard</title>
@@ -24,7 +24,6 @@
         <div class="box-content algn-mid flex-col">
             <!-- atau sini -->
             <div class="dashboard-banner"></div>
-            {{-- <img src="./assets/img/user-placeholder.png" alt="" srcset="" class="user-placeholder"> --}}
             @auth
                 @if (Auth::user()->image)
                     <img src="{{ asset(Auth::user()->image) }}" alt="profile_image"
@@ -49,14 +48,7 @@
                     approval cuti dari atasan
                 </span></span>
             <div class="daftar-container">
-                <label>Show</label>
-                <select name="show" id="tabel-daftar-pengajuan">
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
-                <label>Entries</label>
+                
                 <div class="daftar-table">
                     <table class="table table-bordered">
                         <thead>
@@ -97,30 +89,30 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                    @else
-                                    <tr>
-                                        <td colspan="8">Tidak ada data</td>
-                                    </tr>
-                                    @endif
+                                    {{-- {{ $riwayat_cuti->links() }} --}}
                                     @else
                                     <tr>
                                         <td colspan="8">Tidak ada data</td>
                                     </tr>
                                     @endauth
+                                    @else
+                                    <tr>
+                                        <td colspan="8">Tidak ada data</td>
+                                    </tr>
                                 </tbody>
-                                {{-- {{ $riwayat_cuti->links() }} --}}
                             </table>
+                            @endif
                         </div>
                 <div class="daftar-footer disp-flex flex-row">
-                    {{ $riwayat_cuti->links() }}
+
                 </div>
             </div>
-        </div>
-        <div class="box-content algn-mid flex-col">
-            <div class="footer">
-                <h1 class="ft-title"><img src="./assets/logo/logo.svg" alt="" class="ft-logo"> SIPALING</h1>
-                <p>Data Pegawai</p>
-                <p>©2022 Informatika UNS, All Rights Reserved.</p>
+            <div class="box-content algn-mid flex-col">
+                <div class="footer">
+                    <h1 class="ft-title"><img src="./assets/logo/logo.svg" alt="" class="ft-logo"> SIPALING</h1>
+                    <p>Data Pegawai</p>
+                    <p>©2022 Informatika UNS, All Rights Reserved.</p>
+                </div>
             </div>
         </div>
     </div>

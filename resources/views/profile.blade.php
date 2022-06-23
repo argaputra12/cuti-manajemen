@@ -8,6 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="assets/css/dashboardprofile.css" type="text/css" />
         {{-- <link rel="stylesheet" href="assets/css/fonts.css" type="text/css" /> --}}
+
+        {{-- ini tailwindcss --}}
+        {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
         <link rel="stylesheet" href="assets/css/profile.css" type="text/css" />
         <script src="assets/js/dashboard.js"></script>
         <script src="https://kit.fontawesome.com/6ba9b8f714.js" crossorigin="anonymous"></script>
