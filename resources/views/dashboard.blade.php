@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/fonts.css">
 
         {{-- ini tailwindcss --}}
-        {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <script type="text/javascript" src="assets/js/dashboard.js"></script>
         <script src="https://kit.fontawesome.com/6ba9b8f714.js" crossorigin="anonymous"></script>
@@ -21,13 +21,12 @@
 @section('content')
     <div class="main-content height-80">
         <!-- taruh sini -->
-        <div class="box-content algn-mid flex-col">
+        <div class="box-content-css algn-mid flex-col-css">
             <!-- atau sini -->
             <div class="dashboard-banner"></div>
             @auth
                 @if (Auth::user()->image)
-                    <img src="{{ asset(Auth::user()->image) }}" alt="profile_image"
-                        class="user-placeholder">
+                    <img src="{{ asset(Auth::user()->image) }}" alt="profile_image" class="user-placeholder">
                 @else
                     <img src="assets/img/user-placeholder.png" alt="user" class="user-placeholder" />
                 @endif
@@ -35,7 +34,7 @@
                 <img src="assets/img/user-placeholder.png" alt="user" class="user-placeholder" />
             @endauth
             <br>
-            <div class="welcome-text disp-flex flex-col">
+            <div class="welcome-text disp-flex flex-col-css">
                 <span>Selamat Datang!</span>
                 @auth
                     <span>{{ ucwords(strtolower(Auth::user()->nama)) }}</span>
@@ -43,14 +42,13 @@
                 @endauth
             </div>
         </div>
-        <div class="box-content flex-col">
+        <div class="box-content-css flex-col-css">
             <span class="fo-w-med fo-st-italic ">Daftar Pengajuan Cuti Anda <span class="fo-sz-p6 "> Daftar Menunggu
                     approval cuti dari atasan
                 </span></span>
             <div class="daftar-container">
-                
                 <div class="daftar-table">
-                    <table class="table table-bordered">
+                    <table class="table-css table-bordered">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -64,7 +62,6 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             @auth
                                 @if ($riwayat_cuti->count() > 0)
                                     @foreach ($riwayat_cuti as $item)
@@ -90,26 +87,27 @@
                                         </tr>
                                     @endforeach
                                     {{-- {{ $riwayat_cuti->links() }} --}}
-                                    @else
+                                @else
                                     <tr>
                                         <td colspan="8">Tidak ada data</td>
                                     </tr>
-                                    @endauth
-                                    @else
-                                    <tr>
-                                        <td colspan="8">Tidak ada data</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                @endauth
+                            @else
+                                <tr>
+                                    <td colspan="8">Tidak ada data</td>
+                                </tr>
                             @endif
-                        </div>
-                <div class="daftar-footer disp-flex flex-row">
+                        </tbody>
+                    </table>
 
                 </div>
+                <div class="daftar-footer disp-flex flex-row-css">
+                </div>
             </div>
-            <div class="box-content algn-mid flex-col">
+            <div class="box-content-css algn-mid flex-col-css">
                 <div class="footer">
-                    <h1 class="ft-title"><img src="./assets/logo/logo.svg" alt="" class="ft-logo"> SIPALING</h1>
+                    <h1 class="ft-title font-bold"><img src="./assets/logo/logo.svg" alt="" class="ft-logo">
+                        SIPALING</h1>
                     <p>Data Pegawai</p>
                     <p>©2022 Informatika UNS, All Rights Reserved.</p>
                 </div>

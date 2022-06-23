@@ -11,9 +11,9 @@
         <span class="hb"></span>
     </div>
     <div class="container-sidenavbar" id="side-navbar">
-        <div class="flex flex-row items-center">
+        <div class="disp-flex flex-row-css items-center">
             <div class="title-container center-vertical">
-                <img src="./assets/logo/logo.png" alt="" /><span>SIPALING</span>
+                <img src="./assets/logo/logo.png" alt="" / class="logo-css"><span>SIPALING</span>
             </div>
         </div>
         <div class="instansi-container">
@@ -55,14 +55,13 @@
         </div>
     </div>
     <!-- main page -->
-    <div class="disp-flex flex-col r-ctn-wdth">
+    <div class="disp-flex flex-col-css r-ctn-wdth">
         @auth
             <!-- right corner user profile dropdown  -->
             <div class="top-right-navbar" onclick="profileDropdwn()">
                 @auth
                     @if (Auth::user()->image)
-                        <img src="{{ asset(Auth::user()->image) }}" alt="profile_image"
-                            class="user-icon">
+                        <img src="{{ asset(Auth::user()->image) }}" alt="profile_image" class="user-icon">
                     @else
                         <img src="{{ asset('assets/img/user-placeholder.png') }}" alt="user" class="user-icon" />
                     @endif
@@ -87,7 +86,7 @@
                 </ul>
             </div>
         @else
-            <div class="nav-link">
+            <div class="nav-link-css">
                 <a href="{{ route('login') }}">Login</a>
                 <a href="{{ route('register') }}">Register</a>
             </div>
