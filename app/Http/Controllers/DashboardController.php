@@ -16,13 +16,17 @@ class DashboardController extends Controller
     public function index(){
 
         if(Auth::user()){
-            $riwayat_cuti = RiwayatCuti::where('user_id', Auth::user()->id)->select('jenis_cuti_id', 'status_cuti', 'alasan_cuti', 'durasi_cuti', 'tanggal_mulai', 'tanggal_selesai')->paginate(5);
+            $riwayat_cuti = RiwayatCuti::where('user_id', Auth::user()->id)->select('riwayat_cutis.jenis_cuti_id', 'riwayat_cutis.status_cuti', 'riwayat_cutis.alasan_cuti', 'riwayat_cutis.durasi_cuti', 'riwayat_cutis.tanggal_mulai', 'riwayat_cutis.tanggal_selesai', 'jenis_cutis.nama')
+            ->join('jenis_cutis', 'jenis_cutis.id', '=', 'riwayat_cutis.jenis_cuti_id')
+            ->groupBy('riwayat_cutis.id')
+            ->paginate(5);
 
-            $jenis_cuti = DB::table("jenis_cutis")->select('id', 'nama')->get()->toArray();
+            // dd($riwayat_cuti);
+            // $jenis_cuti = DB::table("jenis_cutis")->select('id')->get();
 
             // dd($a);
 
-            return view('dashboard',compact('riwayat_cuti', 'jenis_cuti'));
+            return view('dashboard',compact('riwayat_cuti'));
 
         }
         else{

@@ -48,7 +48,7 @@
                 </span></span>
             <div class="daftar-container">
                 <div class="daftar-table">
-                    <table class="table-css table-bordered">
+                    <table class="table-css table-bordered mb-4">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -68,7 +68,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ ucwords(strtolower(Auth::user()->nama)) }}</td>
-                                            <td>{{ $jenis_cuti[(int) $item->jenis_cuti_id - 1]->nama }}</td>
+                                            <td>{{ $item->nama }}</td>
                                             <td>{{ $item->alasan_cuti }}</td>
                                             <td>{{ $item->durasi_cuti }} Hari</td>
                                             <td>{{ $item->tanggal_mulai }}</td>
@@ -86,21 +86,20 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                    {{-- {{ $riwayat_cuti->links() }} --}}
-                                @else
+                                    @else
                                     <tr>
                                         <td colspan="8">Tidak ada data</td>
                                     </tr>
-                                @endauth
-                            @else
-                                <tr>
-                                    <td colspan="8">Tidak ada data</td>
-                                </tr>
-                            @endif
-                        </tbody>
-                    </table>
-
-                </div>
+                                    @endauth
+                                    @else
+                                    <tr>
+                                        <td colspan="8">Tidak ada data</td>
+                                    </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                            {{ $riwayat_cuti->links() }}
+                        </div>
                 <div class="daftar-footer disp-flex flex-row-css">
                 </div>
             </div>

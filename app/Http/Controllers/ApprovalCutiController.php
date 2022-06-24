@@ -10,12 +10,15 @@ class ApprovalCutiController extends Controller
 {
     //
     public function index(){
-        $riwayat_cuti = DB::table('riwayat_cutis')->select('id','user_id', 'jenis_cuti_id', 'status_cuti', 'alasan_cuti', 'durasi_cuti', 'tanggal_mulai', 'tanggal_selesai')->get();
+        $riwayat_cuti = DB::table('riwayat_cutis')->select('riwayat_cutis.id','user_id', 'jenis_cuti_id', 'status_cuti', 'alasan_cuti', 'durasi_cuti', 'tanggal_mulai', 'tanggal_selesai', 'users.nama as nama_user', 'jenis_cutis.nama as nama_cuti')
+        ->join('jenis_cutis', 'jenis_cutis.id', '=', 'riwayat_cutis.jenis_cuti_id')
+        ->join('users', 'users.id', '=', 'riwayat_cutis.user_id')
+        ->groupBy('riwayat_cutis.id')
+        ->paginate(10);
 
-        $jenis_cuti = DB::table("jenis_cutis")->select('id', 'nama')->get()->toArray();
-        // dd($riwayat_cuti);
+        
 
-        return view('approvalCuti', compact('riwayat_cuti', 'jenis_cuti'));
+        return view('approvalCuti', compact('riwayat_cuti'));
     }
 
     public function approved(Request $request){

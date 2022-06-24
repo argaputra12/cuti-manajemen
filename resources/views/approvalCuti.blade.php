@@ -37,15 +37,7 @@
         <div class="box-content-css flex-col">
             <span class="fo-w-med fo-st-italic ">Daftar Pengajuan Cuti Anggota <span class="fo-sz-p6 ">
                 </span></span>
-            <div class="daftar-container">
-                <label>Show</label>
-                <select name="show" id="tabel-daftar-pengajuan" class="border">
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
-                <label>Entries</label>
+            <div class="daftar-container h-[450px]">
                 <div class="daftar-table">
 
                     <table class="table-css table-bordered">
@@ -66,21 +58,23 @@
 
                             @if (Auth::user()->is_admin == 1)
                                 @foreach ($riwayat_cuti as $item)
-                                    <tr>
+                                    <tr >
+                                        {{-- <td class="hidden">{{ $item->id }}</td> --}}
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ ucwords(strtolower(\App\Models\User::where('id', $item->user_id)->pluck('nama')->first())) }}
+                                        <td>{{ ucwords(strtolower($item->nama_user)) }}
                                         </td>
-                                        <td>{{ $jenis_cuti[(int) $item->jenis_cuti_id - 1]->nama }}</td>
+                                        <td>{{ $item->nama_cuti }}</td>
                                         <td>{{ $item->alasan_cuti }}</td>
                                         <td>{{ $item->durasi_cuti }} Hari</td>
                                         <td>{{ $item->tanggal_mulai }}</td>
                                         <td>{{ $item->tanggal_selesai }}</td>
-                                        <td>{{ $item->status_cuti }}</td>
-                                        <td class="form-button">
+                                        <td class="alasan_cuti">{{ $item->status_cuti }}</td>
+                                        <td class="form-button flex justify-evenly">
+                                            
                                             <form action="{{ route('admin.approvalCuti.approved') }}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $item->id }}">
-                                                <button type="submit" name="submit" value="Submit"
+                                                <button type="submit" name="submit" value="Submit" onclick="acceptCuti(this.parentElement.parentElement.parentElement)"
                                                     class="bg-none px-2 border-none pointer">
                                                     <i class="fa-solid fa-check"></i>
                                                 </button>
@@ -90,7 +84,7 @@
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $item->id }}">
                                                 <button type="submit" name="submit" value="Submit"
-                                                    class="bg-none px-5 border-none pointer">
+                                                    class="bg-none px-2 border-none pointer">
                                                     <i class="fa-solid fa-xmark"></i>
                                                 </button>
                                             </form>
@@ -104,13 +98,7 @@
                             @endif
                         </tbody>
                     </table>
-                </div>
-                <div class="daftar-footer disp-flex flex-row">
-                    <span>Showing 1 to 1 of 1 entries</span>
-                    <div class="btn-query">
-                        <a href="" class="btn rounded-lg bg-blue-500 hover:bg-blue-800 text-white">Prev</a>
-                        <a href="" class="btn rounded-lg bg-blue-500 hover:bg-blue-800 text-white">Next</a>
-                    </div>
+                    {{ $riwayat_cuti->links() }}
                 </div>
             </div>
         </div>
@@ -124,4 +112,16 @@
         </div>
     </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        const acceptCuti = (e) => {
+
+                // var responseData = response.data;
+                console.log(response.data);
+                // e.querySelector('tr .status_cuti').innerText = response.data;
+
+        }
+    </script>
 @endsection
