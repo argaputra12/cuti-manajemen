@@ -59,6 +59,7 @@
                                 <th>Dari Tanggal</th>
                                 <th>Sampai Dengan</th>
                                 <th>Status</th>
+                                <th>Approval Cuti</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,16 +75,28 @@
                                             <td>{{ $item->tanggal_mulai }}</td>
                                             <td>{{ $item->tanggal_selesai }}</td>
                                             @if ($item->status_cuti == 'Approved')
-                                                <td style="color: green">
-                                                    {{ $item->status_cuti }}
+                                                <td style="color: green">{{ $item->status_cuti }}</td>
+                                                <td>
+                                                    <form action="unduhApproval()">
+                                                        <input type="hidden" name="nama" value="{{ Auth::user()->nama }}">
+                                                        <input type="hidden" name="alasan_cuti" value="{{ $item->alasan_cuti }}">
+                                                        <input type="hidden" name="durasi_cuti" value="{{ $item->durasi_cuti }}">
+                                                        <input type="hidden" name="tanggal_mulai" value="{{ $item->tanggal_mulai }}">
+                                                        <input type="hidden" name="tanggal_selesai" value="{{ $item->tanggal_selesai }}">
+                                                        <input type="hidden" name="status_cuti" value="{{ $item->status_cuti }}">
+                                                        <input type="submit" class="hover:text-blue-600" value="Unduh Dokumen">
+                                                    </form>
+                                                </td>
                                                 @elseif($item->status_cuti == 'Refused')
-                                                <td style="color: red">
-                                                    {{ $item->status_cuti }}
+                                                <td style="color: red"> {{ $item->status_cuti }} </td>
+                                                <td></td>
                                                 @else
                                                 <td>
                                                     {{ $item->status_cuti }}
+                                                </td>
+                                                <td></td>
                                             @endif
-                                            </td>
+
                                         </tr>
                                     @endforeach
                                     @else

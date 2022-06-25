@@ -41,6 +41,7 @@ Route::post('/pengajuan_cuti', [PengajuanCutiController::class, 'store'])->name(
 Route::get('/approvalCuti', [ApprovalCutiController::class, 'index'])->name('admin.approvalCuti')->middleware('is_admin');
 Route::post('/approvalCuti.approved', [ApprovalCutiController::class, 'approved'])->name('admin.approvalCuti.approved')->middleware('is_admin');
 Route::post('/approvalCuti.refused', [ApprovalCutiController::class, 'refused'])->name('admin.approvalCuti.refused')->middleware('is_admin');
+Route::post('/approvalCuti.downloadd', [ApprovalCutiController::class, 'download'])->name('approvalCuti.download')->middleware('is_admin');
 
 Route::post('/update_user', [UpdateUserController::class, 'update'])->name('update_user');
 Route::post('/update_photo', [UpdateUserController::class, 'photo'])->name('update_photo');
