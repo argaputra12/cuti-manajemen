@@ -30,7 +30,7 @@
                         {{ session()->get('error') }}
                     </div>
                 @endif
-                <form class="form-control-css" action="/pengajuan_cuti" method="post">
+                <form class="form-control-css" action="/pengajuan_cuti" method="post"  enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <input type="hidden" name='user_id' value={{ Auth::user()->id }}>
@@ -49,40 +49,26 @@
                         <input type="hidden" name='status_cuti' value="Waiting">
                         <label for="alasan_cuti">Alasan cuti</label>
                         <input type="text" name="alasan_cuti" required>
-                        @error('alasan_cuti')
-                            <p class="mt-2 text-pink-800 text-sm">
-                                Input field harus diisi!
-                            </p>
-                        @enderror
+
                     </div>
 
                     <div class="form-group">
                         <label for="durasi_cuti">Durasi cuti</label>
                         <input type="number" placeholder="Hari" name="durasi_cuti" min="1" required>
-                        @error('durasi_cuti')
-                            <p class="mt-2 text-pink-800 text-sm">
-                                Input field harus diisi!
-                            </p>
-                        @enderror
+
                     </div>
                     <div class="form-group">
                         <label for="tanggal_mulai">Tanggal mulai cuti</label>
                         <input type="date" name="tanggal_mulai" required>
-                        @error('tanggal_mulai')
-                            <p class="mt-2 text-pink-800 text-sm">
-                                Input field harus diisi!
-                            </p>
-                        @enderror
+
                     </div>
                     <div class="form-group">
                         <label for="tanggal_selesai">Tanggal selesai cuti</label>
                         <input type="date" name="tanggal_selesai" required>
-                        {{-- <input type="hidden" name="konfigurasi_cutis_id" value={{ DB::table('konfigurasi_cutis')->where('tahun', now()->format('Y'))->first()->id }}> --}}
-                        @error('tanggal_selesai')
-                            <p class="mt-2 text-pink-800 text-sm">
-                                Input field harus diisi!
-                            </p>
-                        @enderror
+                    </div>
+                    <div class="my-3 h-16 flex items-center border-gray-300 border-2 font-medium rounded-lg hover:bg-gray-300 cursor-pointer">
+                        <input accept="application/pdf" type="file" name="bukti_cuti" required class="absolute opacity-0 " placeholder="Upload bukti cuti" onchange="changeLabel()">
+                        <label for="bukti_cuti" class="label-bukticuti inline-block w-full text-center px-1 text-gray-400">Upload bukti cuti</label>
                     </div>
                     <input type="submit" value="Ajukan Cuti" class="btn-css ajukan-cuti bg-blue-500 hover:bg-blue-800">
                 </form>
@@ -97,4 +83,15 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+<script>
+    const changeLabel = () =>{
+        const label = document.querySelector('.label-bukticuti');
+        const file = document.querySelector('input[type=file]');
+        const fileName = file.value.split('\\').pop();
+        label.innerHTML = fileName;
+    }
+</script>
 @endsection

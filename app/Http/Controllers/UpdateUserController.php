@@ -53,8 +53,7 @@ class UpdateUserController extends Controller
         }
         $user->save();
 
-       
-        /* Store $imageName name in DATABASE from HERE */
+
         return back();
     }
 }
