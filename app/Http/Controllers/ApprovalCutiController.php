@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
 
 class ApprovalCutiController extends Controller
 {
@@ -22,12 +25,17 @@ class ApprovalCutiController extends Controller
     }
 
     public function approved(Request $request){
-        // dd($request->all());
+
+
+
+
+        // Update sisa cuti
         DB::table('riwayat_cutis')->where('id', $request->id )->update([
             'status_cuti' => 'Approved',
         ]);
 
-        return redirect('/approvalCuti');
+        return back();
+
     }
 
     public function refused(Request $request){
@@ -37,5 +45,16 @@ class ApprovalCutiController extends Controller
         ]);
 
         return redirect('/approvalCuti');
+    }
+
+    public function download(Request $request){
+
+        //Create PDF approval cuti
+        $pdf = App::make('dompdf.wrapper');
+        $pdf = PDF::loadView('pdf/cutiApproved',[
+            'data' => $request
+        ]);
+        dd($pdf);
+        return $pdf->stream('cutiApproved.pdf');
     }
 }
