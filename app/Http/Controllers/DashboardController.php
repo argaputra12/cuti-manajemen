@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     //
+    public function __construct(){
+        $this->middleware(['auth','verified']);
+    }
+    
     public function index(){
 
         if(Auth::user()){
@@ -40,7 +44,5 @@ class DashboardController extends Controller
         $nama_department = $department[0]->nama;
         return view('profile', compact('nama_department'));
     }
-
-
-
+    
 }
