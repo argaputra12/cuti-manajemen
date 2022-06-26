@@ -17,6 +17,7 @@ class RiwayatCuti extends Model
         'durasi_cuti',
         'tanggal_mulai',
         'tanggal_selesai',
+        'bukti_cuti',
         'konfigurasi_cutis_id'
     ];
 

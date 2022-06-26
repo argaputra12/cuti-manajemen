@@ -21,7 +21,7 @@
     bottom: 0;
     position: fixed;
     background-color: #11386d;
-    width: 250px;
+    width: 270px;
     justify-content: center;
     height: 100%;
     overflow-x: hidden;
@@ -47,10 +47,10 @@
     cursor: pointer;
     z-index: 3;
   }
-  .flex-row {
+  .flex-row-css {
     flex-direction: row;
   }
-  .flex-col {
+  .flex-col-css {
     flex-direction: column;
   }
   .disp-flex {
@@ -95,9 +95,9 @@
   }
   .container-sidenavbar .nav-menu a {
     border-radius: 0.8em;
-    font-size: 0.9em;
+    font-size: 1.0em;
     display: block;
-    width: 270px;
+    width: 290px;
     position: relative;
     left: -10px;
     padding: 10px 10px 10px 10px;
@@ -137,12 +137,12 @@
   .title-container {
     display: flex;
     padding-left: 0px;
-    font-size: 1.8em;
+    font-size: 2.0em;
     font-weight: bold;
     flex-direction: row;
   }
-  .title-container img {
-    width: 40px;
+  .title-container .logo-css {
+    width: 50px;
     padding-right: 10px;
   }
   .center-vertical {
@@ -199,21 +199,20 @@
   .instansi-container img{
     width: 75px;
   }
-  .instansi-container span{
+  .instansi-container span {
     position: fixed;
-    left: 115px;
-    width: 200px;
-    font-size: 0.9em;
-    width: 130px;
+    left: 113px;
+    font-size: 1.0em;
+    width: 120px;
   }
   .nav-menu{
     font-weight: 500;
     flex-wrap: wrap;
     font-size: 0.9em;
   }
-  .nav-menu span{
+  .nav-menu span {
     line-height: 40px;
-    font-size: 1.2em;
+    font-size: 1.3em;
   }
   .manajemen-container{
     padding-top: 35px;
@@ -262,6 +261,8 @@
     width: 38px;
     margin-right: 10px;
     pointer-events: none;
+    padding: 1px;
+    border-radius: 4em;
   }
   .prof-dropdown{
     display: none;
@@ -305,7 +306,7 @@
     justify-content: space-between;
     z-index: 1;
   }
-  .box-content{
+  .box-content-css{
     position: sticky;
     display: flex;
     background-color: white;
@@ -360,7 +361,7 @@
     margin-bottom: 10px;
     font-size: 0.8em;
   }
-  .table{
+  .table-css {
     display: table;
     border-spacing: 0;
     width: 100%;
@@ -372,6 +373,7 @@
     display: table-header-group;
     vertical-align: middle;
     border-color: inherit;
+    text-align: center;
   }
   tbody {
     display: table-row-group;
@@ -414,14 +416,14 @@
     margin-top: 15px;
     font-size: 0.8em;
   }
-  .btn{
+  .btn-css{
     text-decoration: none;
     background-color: #3b7edc;
     color: #ececec;
     padding: 8px 12px 8px 12px;
     border-radius: 8px;
   }
-  .btn:hover{
+  .btn-css:hover{
     background-color: #255290;
   }
   .footer{
@@ -449,14 +451,14 @@
   .form-group{
       display: flex;
       flex-direction: column;
-        margin-bottom: 10px;
+      margin-bottom: 10px;
   }
     .form-group label{
         font-size: 1em;
         color: #a6a6a6;
     }
     .form-group select{
-        width: 110%;
+        width: 100%;
         height: 30px;
         border: #cdcdcd solid 1px;
         border-radius: 4px;
