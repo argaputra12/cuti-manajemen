@@ -21,6 +21,13 @@ class PengajuanCutiController extends Controller
 
     public function store(Request $request){
 
+        // Store bukti cuti
+        $file = $request->bukti_cuti;
+        $fileExtension = $file->getClientOriginalExtension();
+        $filename = $file->storeAs('bukti_cuti', Auth::user()->id . 'bukti_cuti'.$request->tanggal_mulai.'.'.$fileExtension);
+        $destinationPath = public_path('/bukti_cuti');
+        $file->move($destinationPath, $filename);
+
         $year = new Carbon($request->tanggal_mulai);
         $inserted_data =[
             'user_id' => Auth::user()->id,
@@ -30,22 +37,24 @@ class PengajuanCutiController extends Controller
             'durasi_cuti' => $request->durasi_cuti,
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
+            'bukti_cuti' => $filename,
             'konfigurasi_cutis_id' => DB::table('konfigurasi_cutis')->where('tahun', $year->year)->first()->id,
         ];
 
         // dd($inserted_data);
 
         // Jika sisa cuti lebih dari 0
-        if(Auth::user()->sisa_cuti - $request->durasi_cuti > 0):
-           
+        if(Auth::user()->sisa_cuti - $request->durasi_cuti >= 0):
+
+
             // Update sisa cuti dari user
             DB::table('users')->where('id', Auth::user()->id)->update([
                 'sisa_cuti' => DB::table('users')->where('id', Auth::user()->id)->first()->sisa_cuti - $request->durasi_cuti,
             ]);
             RiwayatCuti::create($inserted_data);
             return redirect('/');
-        endif;  
-        
+        endif;
+
         // Jika sisa cuti 0
         return redirect(route('pengajuan_cuti'))->with('error', 'Sisa cuti anda tidak mencukupi');
 

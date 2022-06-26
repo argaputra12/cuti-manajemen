@@ -25,6 +25,7 @@ return new class extends Migration
             // $table->string('path_bukti_pengajuan');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
+            $table->string('bukti_cuti', 100);
             $table->unsignedBigInteger('konfigurasi_cutis_id');
             $table->foreign('konfigurasi_cutis_id')->references('id')->on('konfigurasi_cutis');
             $table->timestamps('');

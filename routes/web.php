@@ -11,6 +11,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ApprovalCutiController;
 use App\Http\Controllers\PengajuanCutiController;
+use App\Http\Controllers\UpdateUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ use App\Http\Controllers\PengajuanCutiController;
 */
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/profile', [DashboardController::class, 'profile'])->middleware('auth');
+Route::get('/profile', [DashboardController::class, 'profile'])->middleware('auth')->name('profile');
 
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
@@ -40,6 +41,10 @@ Route::post('/pengajuan_cuti', [PengajuanCutiController::class, 'store'])->name(
 Route::get('/approvalCuti', [ApprovalCutiController::class, 'index'])->name('admin.approvalCuti')->middleware('is_admin');
 Route::post('/approvalCuti.approved', [ApprovalCutiController::class, 'approved'])->name('admin.approvalCuti.approved')->middleware('is_admin');
 Route::post('/approvalCuti.refused', [ApprovalCutiController::class, 'refused'])->name('admin.approvalCuti.refused')->middleware('is_admin');
+Route::post('/approvalCuti.download', [ApprovalCutiController::class, 'download'])->name('approvalCuti.download')->middleware('auth');
+
+Route::post('/update_user', [UpdateUserController::class, 'update'])->name('update_user');
+Route::post('/update_photo', [UpdateUserController::class, 'photo'])->name('update_photo');
 
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
