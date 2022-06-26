@@ -50,11 +50,22 @@ class ApprovalCutiController extends Controller
     public function download(Request $request){
 
         //Create PDF approval cuti
+        $data = DB::table('riwayat_cutis')->select('riwayat_cutis.id', 'jenis_cuti_id', 'status_cuti', 'alasan_cuti', 'durasi_cuti', DB::raw('DATE_FORMAT(tanggal_mulai, "%d %M %Y") as tanggal_mulai'), 'bukti_cuti', DB::raw('DATE_FORMAT(tanggal_selesai, "%d %M %Y") as tanggal_selesai'), 'users.nama as nama_user', DB::raw('MONTH(CURDATE()) as bulan'), DB::raw('YEAR(CURDATE()) as tahun'), DB::raw('DATE_FORMAT(CURDATE(), "%d %M %Y") as tanggal'), 'users.nip as nip')
+        ->where('riwayat_cutis.id', $request->riwayat_cuti_id)
+        ->join('users', 'users.id', '=', 'riwayat_cutis.user_id')
+        ->get();
+
+        $bulan_romawi = array("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
+
+        $pdf_data = [
+            'data' => $data[0],
+            'bulan_romawi' => $bulan_romawi[$data[0]->bulan]
+        ];
+        // dd($pdf_data);
+
         $pdf = App::make('dompdf.wrapper');
-        $pdf = PDF::loadView('pdf/cutiApproved',[
-            'data' => $request
-        ]);
-        dd($pdf);
+        $pdf = PDF::loadView('pdf/cutiApproved', $pdf_data);
+        // dd($pdf);
         return $pdf->stream('cutiApproved.pdf');
     }
 }
