@@ -46,5 +46,5 @@ Route::post('/approvalCuti.download', [ApprovalCutiController::class, 'download'
 Route::post('/update_user', [UpdateUserController::class, 'update'])->name('update_user');
 Route::post('/update_photo', [UpdateUserController::class, 'photo'])->name('update_photo');
 
-Auth::routes(['verify'=>true]);
+Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
