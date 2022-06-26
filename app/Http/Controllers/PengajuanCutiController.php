@@ -24,7 +24,7 @@ class PengajuanCutiController extends Controller
         // Store bukti cuti
         $file = $request->bukti_cuti;
         $fileExtension = $file->getClientOriginalExtension();
-        $filename = $file->storeAs('bukti_cuti', Auth::user()->id . 'bukti_cuti.'.$fileExtension);
+        $filename = $file->storeAs('bukti_cuti', Auth::user()->id . 'bukti_cuti'.$request->tanggal_mulai.'.'.$fileExtension);
         $destinationPath = public_path('/bukti_cuti');
         $file->move($destinationPath, $filename);
 

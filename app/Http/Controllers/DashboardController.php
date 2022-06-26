@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function index(){
 
         if(Auth::user()){
-            $riwayat_cuti = RiwayatCuti::where('user_id', Auth::user()->id)->select('riwayat_cutis.jenis_cuti_id', 'riwayat_cutis.status_cuti', 'riwayat_cutis.alasan_cuti', 'riwayat_cutis.durasi_cuti', 'riwayat_cutis.tanggal_mulai', 'riwayat_cutis.tanggal_selesai', 'jenis_cutis.nama')
+            $riwayat_cuti = RiwayatCuti::where('user_id', Auth::user()->id)->select('riwayat_cutis.jenis_cuti_id', 'riwayat_cutis.status_cuti', 'riwayat_cutis.alasan_cuti', 'riwayat_cutis.durasi_cuti', 'riwayat_cutis.tanggal_mulai', 'riwayat_cutis.tanggal_selesai', 'jenis_cutis.nama', 'riwayat_cutis.id as riwayat_cuti_id')
             ->join('jenis_cutis', 'jenis_cutis.id', '=', 'riwayat_cutis.jenis_cuti_id')
             ->groupBy('riwayat_cutis.id')
             ->paginate(5);

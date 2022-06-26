@@ -63,7 +63,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @auth
+                            @if(Auth::User())
                                 @if ($riwayat_cuti->count() > 0)
                                     @foreach ($riwayat_cuti as $item)
                                         <tr>
@@ -77,13 +77,10 @@
                                             @if ($item->status_cuti == 'Approved')
                                                 <td style="color: green">{{ $item->status_cuti }}</td>
                                                 <td>
-                                                    <form action="unduhApproval()">
+                                                    <form action="{{ route('approvalCuti.download') }}" method="POST">
+                                                        @csrf
                                                         <input type="hidden" name="nama" value="{{ Auth::user()->nama }}">
-                                                        <input type="hidden" name="alasan_cuti" value="{{ $item->alasan_cuti }}">
-                                                        <input type="hidden" name="durasi_cuti" value="{{ $item->durasi_cuti }}">
-                                                        <input type="hidden" name="tanggal_mulai" value="{{ $item->tanggal_mulai }}">
-                                                        <input type="hidden" name="tanggal_selesai" value="{{ $item->tanggal_selesai }}">
-                                                        <input type="hidden" name="status_cuti" value="{{ $item->status_cuti }}">
+                                                        <input type="hidden" name="riwayat_cuti_id" value="{{ $item->riwayat_cuti_id }}">
                                                         <input type="submit" class="hover:text-blue-600" value="Unduh Dokumen">
                                                     </form>
                                                 </td>
@@ -99,21 +96,21 @@
 
                                         </tr>
                                     @endforeach
-                                    @else
-                                    <tr>
-                                        <td colspan="8">Tidak ada data</td>
-                                    </tr>
-                                    @endauth
-                                    @else
-                                    <tr>
-                                        <td colspan="8">Tidak ada data</td>
-                                    </tr>
-                                    @endif
-                                </tbody>
-                            </table>
-                            {{ $riwayat_cuti->links() }}
-                        </div>
-                <div class="daftar-footer disp-flex flex-row-css">
+                                @else
+                                <tr>
+                                    <td colspan="9">Tidak ada data</td>
+                                </tr>
+                                @endif
+                            @else
+                            <tr>
+                                <td colspan="9">Tidak ada data</td>
+                            </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                    @auth
+                    {{ $riwayat_cuti->links() }}
+                    @endauth
                 </div>
             </div>
             <div class="box-content-css algn-mid flex-col-css">
