@@ -60,13 +60,22 @@ class UpdateUserController extends Controller
         return back();
     }
 
-    public function index(){
+    public function index(Request $request){
 
         // Get user data
-        $user_data = DB::table('users')
+
+        if ($request->has('search')) {
+            $user_data = DB::table('users')
+            ->where('users.nama', 'like', '%' . $request->search . '%')
             ->select('users.id', 'users.nip', 'users.nama', 'users.alamat', 'users.department_id', 'departments.nama as nama_department', 'users.sisa_cuti', 'users.is_admin')
             ->join('departments', 'users.department_id', '=', 'departments.id')
-            ->get();
+            ->paginate(10);
+        } else {
+            $user_data = DB::table('users')
+            ->select('users.id', 'users.nip', 'users.nama', 'users.alamat', 'users.department_id', 'departments.nama as nama_department', 'users.sisa_cuti', 'users.is_admin')
+            ->join('departments', 'users.department_id', '=', 'departments.id')
+            ->paginate(10);
+        }
 
         $department_data = DB::table('departments')
             ->select('departments.id', 'departments.nama')

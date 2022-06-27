@@ -20,10 +20,18 @@
 @section('content')
     <div class="main-content height-80">
         <div class="box-content-css flex-col">
-            <div class="leading-[2.2em] border-y-2 border-x-[#cdcdcd] py-3 mb-2">
+            <div class="leading-[2.2em] border-y-2 border-x-[#cdcdcd] py-3 ">
                 <h2 class="font-semibold text-2xl font-poppins">Manajemen Pegawai</h2>
             </div>
             <div class="daftar-container min-h-[450px]">
+                <div class="search pl-1 mb-8">
+                    <form action="{{ route('manajemen_user.index') }}" method="get">
+                        <input type="text" name="search" placeholder="Cari Pegawai" class="search-input h-12 rounded-full px-3 border-4 text-base w-1/3 mr-4">
+                        <button type="submit" class="search-button bg-darkblue w-20 rounded-full h-12">
+                            <i class="fas fa-search text-white fa-xl"></i>
+                        </button>
+                    </form>
+                </div>
                 <div class="daftar-table ">
                     <div class="table-header items-center border-b-4 pb-2 font-poppins text-sm flex justify-between h-7 font-medium text-center mb-4">
                         <div class="w-12 text-center">NIP</div>

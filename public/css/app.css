@@ -10798,6 +10798,21 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-0 {
   margin-bottom: 0px;
 }
+.mb-8 {
+  margin-bottom: 2rem;
+}
+.mr-0 {
+  margin-right: 0px;
+}
+.mr-8 {
+  margin-right: 2rem;
+}
+.mr-6 {
+  margin-right: 1.5rem;
+}
+.mr-4 {
+  margin-right: 1rem;
+}
 .block {
   display: block;
 }
@@ -10864,6 +10879,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-8 {
   height: 2rem;
 }
+.h-12 {
+  height: 3rem;
+}
+.h-60 {
+  height: 15rem;
+}
 .min-h-\[450px\] {
   min-height: 450px;
 }
@@ -10912,6 +10933,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-\[400px\] {
   width: 400px;
 }
+.w-32 {
+  width: 8rem;
+}
+.w-56 {
+  width: 14rem;
+}
+.w-16 {
+  width: 4rem;
+}
 .cursor-pointer {
   cursor: pointer;
 }
@@ -10954,6 +10984,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .rounded-\[25px\] {
   border-radius: 25px;
 }
+.rounded-2xl {
+  border-radius: 1rem;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
 .rounded-t-xl {
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
@@ -10963,6 +10999,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .border-\[1px\] {
   border-width: 1px;
+}
+.border {
+  border-width: 1px;
+}
+.border-4 {
+  border-width: 4px;
 }
 .border-y-2 {
   border-top-width: 2px;
@@ -11077,6 +11119,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 2.5rem;
   padding-right: 2.5rem;
 }
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -11094,6 +11140,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pt-\[10px\] {
   padding-top: 10px;
+}
+.pl-2 {
+  padding-left: 0.5rem;
 }
 .text-left {
   text-align: left;
