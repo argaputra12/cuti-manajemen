@@ -5,7 +5,17 @@ module.exports = {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+
+    fontFamily : {
+        'poppins' : ['Poppins', 'sans-serif'],
+    },
+    extend: {
+        colors:{
+           "darkblue" : '#11386d',
+           "darkred" : "#cc0000"
+
+        }
+    },
   },
   plugins: [],
 }

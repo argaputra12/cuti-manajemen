@@ -59,7 +59,7 @@ class ApprovalCutiController extends Controller
 
         $pdf_data = [
             'data' => $data[0],
-            'bulan_romawi' => $bulan_romawi[$data[0]->bulan]
+            'bulan' => $bulan_romawi[$data[0]->bulan]
         ];
         // dd($pdf_data);
 

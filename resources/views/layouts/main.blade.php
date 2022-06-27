@@ -20,7 +20,7 @@
             <img src="./assets/logo/uns.png" alt="" srcset="" />
             <span>Universitas Sebelas Maret</span>
         </div>
-        <div class="nav-menu">
+        <div class="nav-menu font-semibold">
             <span>General</span>
             <a href="/">
                 <i class="fa-solid fa-house-user fa-lg " style="margin-right: 0.4em">
@@ -43,19 +43,18 @@
                             </i>
                             Approval Cuti
                         </a><i class="fa-solid fa-bell fa-lg collapse-icon"></i>
+                        <a href="{{ route('manajemen_user.index') }}">
+                            <i class="fa-solid fa-person-circle-exclamation" style="margin-right: 0.4em; margin-left: 0.1em"></i>
+                            Manajemen User
+                        </a><i class="fa-solid fa-person-circle-exclamation collapse-icon"></i>
                     @endif
 
-                    <a href="">
-                        <i class="fa-solid fa-list fa-lg move-icon" style="margin-right: 0.4em; margin-left: 0.1em">
-                        </i>
-                        Data History
-                    </a><i class="fa-solid fa-list fa-lg collapse-icon"></i>
                 </div>
             @endauth
         </div>
     </div>
     <!-- main page -->
-    <div class="disp-flex flex-col-css r-ctn-wdth">
+    <div class="disp-flex flex-col-css r-ctn-wdth font-poppins">
         @auth
             <!-- right corner user profile dropdown  -->
             <div class="top-right-navbar" onclick="profileDropdwn()">
@@ -73,7 +72,7 @@
                 <i class="fa-solid fa-angle-down" style="position: relative; right: -8px; top: 1px; pointer-events: none;">
                 </i>
                 <ul class="prof-dropdown" id="profDropdown">
-                    <li><a href="{{ route('profile') }}">Profile</a></li>
+                    <li><a href="{{ route('profile') }}" class="font-semibold">Profile</a></li>
                     <li>
                         <form action={{ route('logout') }} method="POST" id="logout-form">
                             @csrf

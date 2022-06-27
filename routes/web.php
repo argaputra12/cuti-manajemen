@@ -45,6 +45,12 @@ Route::post('/approvalCuti.download', [ApprovalCutiController::class, 'download'
 
 Route::post('/update_user', [UpdateUserController::class, 'update'])->name('update_user');
 Route::post('/update_photo', [UpdateUserController::class, 'photo'])->name('update_photo');
+Route::get('/manajemen_user', [UpdateUserController::class, 'index'])->middleware('is_admin')->name('manajemen_user.index');
+Route::post('/manajemen_user/edit', [UpdateUserController::class, 'editUser'])->name('manajemen_user.edit')->middleware('is_admin');
+Route::post('/manajemen_user/delete', [UpdateUserController::class, 'deleteUser'])->name('manajemen_user.delete')->middleware('is_admin');
+Route::post('/manajemen_user/change_role/admin', [UpdateUserController::class, 'changeRoleToAdmin'])->name('manajemen_user.change_role.admin')->middleware('is_admin');
+Route::post('/manajemen_user/change_role/user', [UpdateUserController::class, 'changeRoleToUser'])->name('manajemen_user.change_role.user')->middleware('is_admin');
+
 
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

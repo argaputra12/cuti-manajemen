@@ -30,11 +30,11 @@
     transform: translate(-82%, 0);
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   }
-  
+
   .nav-body input[type='checkbox']:checked ~ .container-sidenavbar {
     transform: none;
   }
-  
+
   .nav-body input[type='checkbox'] {
     opacity: 0;
     display: block;
@@ -126,11 +126,11 @@
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
       background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
   }
-  
+
   .hb:first-child {
     transform-origin: 0% 0%;
   }
-  
+
   .hb:nth-last-child(2) {
     transform-origin: 0% 100%;
   }
@@ -292,7 +292,7 @@
     display: block;
     z-index: 3;
   }
-  
+
   /*Main Content */
   .main-content{
     display: flex;
@@ -323,7 +323,7 @@
     padding: 1px;
     border-radius: 4em;
   }
-  
+
   .welcome-text{
     width: 100%;
     line-height: 2.2em;
@@ -332,10 +332,6 @@
     align-items: center;
     padding: 15px 0px 15px 0px;
     margin-bottom: 25px;
-  }
-  .welcome-text span{
-    font-size: 1.6em;
-    font-weight: 400;
   }
   .dashboard-banner{
     z-index: 0;
@@ -355,7 +351,7 @@
     width: 45px;
     height: 25px;
   }
-  
+
   .daftar-table{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -493,7 +489,7 @@
         border: #cdcdcd solid 1px;
         border-radius: 4px;
         padding: 0px 10px 0px 10px;
-        
+
     }
 
     .form-group input::placeholder{

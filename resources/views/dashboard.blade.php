@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="assets/css/dashboardprofile.css" />
-        <link rel="stylesheet" type="text/css" href="assets/css/fonts.css">
+        {{-- <link rel="stylesheet" type="text/css" href="assets/css/fonts.css"> --}}
 
         {{-- ini tailwindcss --}}
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -43,14 +43,14 @@
             </div>
         </div>
         <div class="box-content-css flex-col-css">
-            <span class="fo-w-med fo-st-italic ">Daftar Pengajuan Cuti Anda <span class="fo-sz-p6 "> Daftar Menunggu
+            <span class="fo-w-med fo-st-italic font-semibold text-lg">Daftar Pengajuan Cuti Anda <span class="fo-sz-p6 "> Daftar Menunggu
                     approval cuti dari atasan
                 </span></span>
             <div class="daftar-container">
                 <div class="daftar-table">
                     <table class="table-css table-bordered mb-4">
                         <thead>
-                            <tr>
+                            <tr class="h-7 text-base">
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Jenis Cuti</th>
@@ -62,7 +62,7 @@
                                 <th>Approval Cuti</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-sm">
                             @if(Auth::User())
                                 @if ($riwayat_cuti->count() > 0)
                                     @foreach ($riwayat_cuti as $item)

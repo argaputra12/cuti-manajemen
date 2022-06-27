@@ -20,8 +20,7 @@
 @section('content')
     <div class="main-content height-80">
         <div class="box-content-css flex-col">
-            <span class="fo-w-med fo-st-italic ">Daftar Pengajuan Cuti Anggota <span class="fo-sz-p6 ">
-                </span></span>
+            <span class="font-semibold text-xl py-3 border-y-2 ">Daftar Pengajuan Cuti Anggota </span>
             <div class="daftar-container h-[450px]">
                 <div class="daftar-table">
 
@@ -84,7 +83,7 @@
                             @endforeach
                             @else
                             <tr>
-                                <td colspan="9">Tidak ada data</td>
+                                <td colspan="10">Tidak ada data</td>
                             </tr>
                             @endif
                         </tbody>

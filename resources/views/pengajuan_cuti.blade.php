@@ -21,7 +21,7 @@
         <!-- taruh sini -->
 
         <div class="box-content-css algn-mid flex-col-css">
-            <div class="welcome-text">
+            <div class="welcome-text font-semibold text-2xl">
                 <span>Pengajuan Cuti</span>
             </div>
             <div class="form-wrapper">
