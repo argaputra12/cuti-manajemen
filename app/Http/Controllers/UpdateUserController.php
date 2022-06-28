@@ -21,7 +21,7 @@ class UpdateUserController extends Controller
     {
         $userId = Auth::id();
         $user = User::findOrFail($userId);
-        $this->validate(request(), [
+        $request->validate([
             'nip' => 'required|unique:users,nip,' . $user->id,
             'nik' => 'required|unique:users,nik,' . $user->id,
             'nama' => 'required',
@@ -60,21 +60,22 @@ class UpdateUserController extends Controller
         return back();
     }
 
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
         // Get user data
 
         if ($request->has('search')) {
             $user_data = DB::table('users')
-            ->where('users.nama', 'like', '%' . $request->search . '%')
-            ->select('users.id', 'users.nip', 'users.nama', 'users.alamat', 'users.department_id', 'departments.nama as nama_department', 'users.sisa_cuti', 'users.is_admin')
-            ->join('departments', 'users.department_id', '=', 'departments.id')
-            ->paginate(10);
+                ->where('users.nama', 'like', '%' . $request->search . '%')
+                ->select('users.id', 'users.nip', 'users.nama', 'users.alamat', 'users.department_id', 'departments.nama as nama_department', 'users.sisa_cuti', 'users.is_admin')
+                ->join('departments', 'users.department_id', '=', 'departments.id')
+                ->paginate(10);
         } else {
             $user_data = DB::table('users')
-            ->select('users.id', 'users.nip', 'users.nama', 'users.alamat', 'users.department_id', 'departments.nama as nama_department', 'users.sisa_cuti', 'users.is_admin')
-            ->join('departments', 'users.department_id', '=', 'departments.id')
-            ->paginate(10);
+                ->select('users.id', 'users.nip', 'users.nama', 'users.alamat', 'users.department_id', 'departments.nama as nama_department', 'users.sisa_cuti', 'users.is_admin')
+                ->join('departments', 'users.department_id', '=', 'departments.id')
+                ->paginate(10);
         }
 
         $department_data = DB::table('departments')
@@ -85,7 +86,8 @@ class UpdateUserController extends Controller
     }
 
 
-    public function deleteUser(Request $request){
+    public function deleteUser(Request $request)
+    {
 
         // Delete user data
         DB::table('users')
@@ -94,7 +96,8 @@ class UpdateUserController extends Controller
 
         return back();
     }
-    public function editUser(Request $request){
+    public function editUser(Request $request)
+    {
 
         // update user data
         DB::table('users')
@@ -110,7 +113,8 @@ class UpdateUserController extends Controller
         return back();
     }
 
-    public function changeRoleToAdmin(Request $request){
+    public function changeRoleToAdmin(Request $request)
+    {
 
         // update user data
         DB::table('users')
@@ -122,7 +126,8 @@ class UpdateUserController extends Controller
         return back();
     }
 
-    public function changeRoleToUser(Request $request){
+    public function changeRoleToUser(Request $request)
+    {
 
         // update user data
         DB::table('users')
