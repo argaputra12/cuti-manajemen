@@ -21,7 +21,7 @@ class UpdateUserController extends Controller
     {
         $userId = Auth::id();
         $user = User::findOrFail($userId);
-        $this->validate(request(), [
+        $request->validate([
             'nip' => 'required|unique:users,nip,' . $user->id,
             'nik' => 'required|unique:users,nik,' . $user->id,
             'nama' => 'required',
@@ -60,7 +60,8 @@ class UpdateUserController extends Controller
         return back();
     }
 
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
         // Get user data
 
@@ -78,7 +79,6 @@ class UpdateUserController extends Controller
             ->join('departments', 'users.department_id', '=', 'departments.id')
             ->orderBy('users.id', 'asc')
             ->paginate(10);
-
         }
 
 
@@ -90,7 +90,8 @@ class UpdateUserController extends Controller
     }
 
 
-    public function deleteUser(Request $request){
+    public function deleteUser(Request $request)
+    {
 
         // Delete user data
         DB::table('users')
@@ -99,7 +100,8 @@ class UpdateUserController extends Controller
 
         return back();
     }
-    public function editUser(Request $request){
+    public function editUser(Request $request)
+    {
 
         // update user data
         DB::table('users')
@@ -115,7 +117,8 @@ class UpdateUserController extends Controller
         return back();
     }
 
-    public function changeRoleToAdmin(Request $request){
+    public function changeRoleToAdmin(Request $request)
+    {
 
         // update user data
         DB::table('users')
@@ -127,7 +130,8 @@ class UpdateUserController extends Controller
         return back();
     }
 
-    public function changeRoleToUser(Request $request){
+    public function changeRoleToUser(Request $request)
+    {
 
         // update user data
         DB::table('users')
