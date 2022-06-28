@@ -6,13 +6,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="assets/css/dashboardprofile.css" />
-        <link rel="stylesheet" type="text/css" href="assets/css/fonts.css">
 
         {{-- ini tailwindcss --}}
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <script type="text/javascript" src="assets/js/dashboard.js"></script>
         <script src="https://kit.fontawesome.com/6ba9b8f714.js" crossorigin="anonymous"></script>
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+</script>
+
         <title>SIPALING | Manajemen User</title>
     </head>
 @endsection
@@ -40,7 +44,7 @@
                         <div class="w-[350px]">Alamat</div>
                         <div class="w-20">Sisa cuti</div>
                         <div class="w-14">Role</div>
-                        <div class="w-[150px] ">Aksi</div>
+                        <div class="w-[200px] ">Aksi</div>
                 </div>
                 @foreach ($user_data as $user)
 
@@ -59,7 +63,7 @@
                         Pegawai
                         @endif
                     </div>
-                    <div class="w-[150px] flex justify-evenly">
+                    <div class="w-[200px] flex justify-evenly">
 
                         @if ($user->is_admin == 1)
                         {{-- Change role to user --}}
@@ -82,8 +86,14 @@
                         </form>
                         @endif
 
+                        {{-- Statistik Riwayat Cuti --}}
+                        <button class="statistik" onclick="showModalStatistik(this.parentElement.parentElement)">
+                            <i class="fa-solid fa-chart-pie fa-xl"></i>
+                        </button>
+
+
                         {{-- Edit user --}}
-                        <button class="edit" onclick="showModalEditUser(this.parentElement.parentElement)">
+                        <button class="edit" type="submit" onclick="showModalEditUser(this.parentElement.parentElement)">
                             <i class="fa-solid fa-pen-to-square fa-xl"></i>
                         </button>
 
@@ -95,9 +105,12 @@
                                 <i class="fa-solid fa-trash-can fa-xl"></i>
                             </button>
                         </form>
+
+
                     </div>
                 </div>
                 @endforeach
+                {{ $user_data->links() }}
             </div>
             <div class="hidden modal-edit-user fixed w-full h-full bg-slate-800 bg-opacity-50 z-50 inset-0 flex justify-center items-center">
                 <div class="modal-conainer w-1/3 bg-white py-8 rounded-xl flex flex-col items-center">
@@ -139,6 +152,17 @@
                     </form>
                 </div>
             </div>
+            <div class="hidden modal-statistik modal-edit-user fixed w-full h-full bg-slate-800 bg-opacity-50 z-50 inset-0 flex justify-center items-center">
+                <div class="modal-conainer w-1/3 bg-white py-8 rounded-xl flex flex-col items-center overflow-hidden">
+                    <div class="w-full flex justify-end px-10">
+                        <button onclick="closeStatistik()">
+                            <i class="text-darkred fa-solid fa-xmark fa-2xl"></i>
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-5">STATISTIK CUTI</h3>
+                    <div id="piechart_3d" style="width: 900px; height: 500px;" class="mt-[-50px]"></div>
+                </div>
+            </div>
         </div>
         <div class="box-content-css algn-mid flex-col">
             <div class="footer">
@@ -151,6 +175,7 @@
     </div>
 @endsection
 @section('script')
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
         const showModalEditUser = (e) =>{
             var inputId = e.querySelector('.id');
@@ -176,6 +201,52 @@
         const closeEditModal = () =>{
             const modalEditUser = document.querySelector('.modal-edit-user')
             modalEditUser.classList.add('hidden')
+
+        }
+
+        const showModalStatistik = (e) =>{
+            var inputId = e.querySelector('.id');
+            const modalStatistik = document.querySelector('.modal-statistik')
+
+            jQuery.ajax({
+                url: `/manajemen_user/statistik/${inputId.innerHTML}`,
+            })
+            .then(response => {
+                console.log(response[0].jumlah_cuti);
+                modalStatistik.classList.remove('hidden');
+
+                var chart_data =[
+                    ['Jenis Cuti', 'Jumlah Cuti']
+                ]
+
+                chart_data.forEach(() => {
+                    chart_data.push([response[0].nama_cuti, response[0].jumlah_cuti])
+                })
+                google.charts.load("current", {packages:["corechart"]});
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                var data = google.visualization.arrayToDataTable(chart_data);
+
+                var options = {
+                    slices: {
+                        0: {color: '#11b8ab'},
+                        1: {color: '#386D11'},
+                        2: {color: '#f5a623'},
+                        3: {color: '#985873'},
+                        4: {color: '#985D58'},
+                        5: {color: '#589398'},
+                    }
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                chart.draw(data, options);
+                }
+            })
+        }
+
+        const closeStatistik = () =>{
+            const modalStatistik = document.querySelector('.modal-statistik')
+            modalStatistik.classList.add('hidden')
         }
     </script>
 @endsection

@@ -52,5 +52,9 @@ Route::post('/manajemen_user/change_role/admin', [UpdateUserController::class, '
 Route::post('/manajemen_user/change_role/user', [UpdateUserController::class, 'changeRoleToUser'])->name('manajemen_user.change_role.user')->middleware('is_admin');
 
 
+Route::get('/manajemen_user/statistik/{id}', [UpdateUserController::class, 'statistik']);
+
+
+
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -133,4 +133,20 @@ class UpdateUserController extends Controller
 
         return back();
     }
+
+
+    public function statistik(Request $request){
+        // Get user riwayat cuti
+        $riwayat_cuti = DB::table('riwayat_cutis')
+        ->join('jenis_cutis', 'riwayat_cutis.jenis_cuti_id', '=', 'jenis_cutis.id')
+        ->select(DB::raw('COUNT(riwayat_cutis.id) as jumlah_cuti'), 'riwayat_cutis.user_id' , 'jenis_cutis.nama as nama_cuti')
+        ->where('riwayat_cutis.user_id', $request->id)
+        ->groupBy('jenis_cutis.nama')
+        ->groupBy('riwayat_cutis.user_id')
+        ->get();
+
+        // dd($riwayat_cuti);
+
+        return response()->json($riwayat_cuti);
+    }
 }
