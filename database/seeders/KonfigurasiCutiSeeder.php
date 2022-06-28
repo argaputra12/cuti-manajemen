@@ -1,10 +1,14 @@
 <?php
 
 namespace Database\Seeders;
+// when installed via composer
+require_once 'vendor/autoload.php';
 
+use Faker\Factory as Faker;
 use App\Models\KonfigurasiCuti;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
 
 class KonfigurasiCutiSeeder extends Seeder
 {
@@ -16,21 +20,14 @@ class KonfigurasiCutiSeeder extends Seeder
     public function run()
     {
         //
-        $konfigurasi_cutis =[
-            [
-                'tahun' => '2022',
-                'jumlah_cuti_maksimum' => '12',
-                'jumlah_cuti_bersama' => '6'
-            ],
-            [
-                'tahun' => '2023',
-                'jumlah_cuti_maksimum' => '22',
-                'jumlah_cuti_bersama' => '13',
-            ] 
-        ];
+        $faker = Faker::create('id_ID');
 
-        foreach ($konfigurasi_cutis as $item) {
-            KonfigurasiCuti::create($item);
+        for($i = 1; $i <= 5; $i++){
+            KonfigurasiCuti::create([
+                'tahun' => $faker->numberBetween(2021, 2026),
+                'jumlah_cuti_maksimum' => $faker->numberBetween(40, 50),
+                'jumlah_cuti_bersama' => $faker->numberBetween(20, 29),
+            ]);
         }
 
 
