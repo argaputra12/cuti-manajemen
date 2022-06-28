@@ -21,6 +21,9 @@ class UserSeeder extends Seeder
     public function run()
     {
         //
+        // konfigurasi cuti tahun ini
+        $konfigurasi_cutis_id = DB::table('konfigurasi_cutis')->where('tahun', now()->format('Y'))->first()->id;
+
         $inserted_data = [
             [
                 'nik' => '12345678934235',
@@ -34,6 +37,7 @@ class UserSeeder extends Seeder
                 'telepon' => '082132557027',
                 'is_admin' => 1,
                 'sisa_cuti' => 99,
+                'konfigurasi_cutis_id' => $konfigurasi_cutis_id,
             ],
             [
                 'nik' => '12345678907542',
@@ -47,6 +51,7 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('user'),
                 'is_admin' => 0,
                 'sisa_cuti' => 99,
+                'konfigurasi_cutis_id' => $konfigurasi_cutis_id,
             ]
         ];
 
@@ -59,6 +64,8 @@ class UserSeeder extends Seeder
 
         // Jumlah cuti beersama tahun ini
         $jumlah_cuti_bersama = DB::table('konfigurasi_cutis')->where('tahun', now()->format('Y'))->first()->jumlah_cuti_bersama;
+
+
 
         $faker = Faker::create('id_ID');
 
@@ -75,6 +82,7 @@ class UserSeeder extends Seeder
                 'department_id' => $faker->numberBetween(1, 6),
                 'telepon' => $faker->phoneNumber(),
                 'email' => $faker->unique()->email(),
+                'konfigurasi_cutis_id' => $konfigurasi_cutis_id,
                 'password' => bcrypt('password'),
                 'is_admin' => $faker->numberBetween(0, 1),
                 'sisa_cuti' => $jumlah_cuti_maksimum-$jumlah_cuti_bersama,

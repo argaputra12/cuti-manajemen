@@ -38,7 +38,7 @@ class PengajuanCutiController extends Controller
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
             'bukti_cuti' => $filename,
-            'konfigurasi_cutis_id' => DB::table('konfigurasi_cutis')->where('tahun', $year->year)->first()->id,
+            // 'konfigurasi_cutis_id' => DB::table('konfigurasi_cutis')->where('tahun', $year->year)->first()->id,
         ];
 
         // dd($inserted_data);

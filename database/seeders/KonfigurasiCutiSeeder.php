@@ -22,9 +22,9 @@ class KonfigurasiCutiSeeder extends Seeder
         //
         $faker = Faker::create('id_ID');
 
-        for($i = 1; $i <= 5; $i++){
+        for($i = 20; $i <= 27; $i++){
             KonfigurasiCuti::create([
-                'tahun' => $faker->numberBetween(2021, 2026),
+                'tahun' => $i + 2000,
                 'jumlah_cuti_maksimum' => $faker->numberBetween(40, 50),
                 'jumlah_cuti_bersama' => $faker->numberBetween(20, 29),
             ]);

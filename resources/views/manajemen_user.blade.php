@@ -27,7 +27,7 @@
             <div class="leading-[2.2em] border-y-2 border-x-[#cdcdcd] py-3 ">
                 <h2 class="font-semibold text-2xl font-poppins">Manajemen Pegawai</h2>
             </div>
-            <div class="daftar-container min-h-[450px]">
+            <div class="daftar-container h-full">
                 <div class="search pl-1 mb-8">
                     <form action="{{ route('manajemen_user.index') }}" method="get">
                         <input type="text" name="search" placeholder="Cari Pegawai" class="search-input h-12 rounded-full px-3 border-4 text-base w-1/3 mr-4">
@@ -48,7 +48,7 @@
                 </div>
                 @foreach ($user_data as $user)
 
-                <div class="table-body border-b-2 font-poppins text-sm flex justify-between h-16  text-left items-center overflow-hidden">
+                <div class="table-body border-b-2 font-poppins text-sm flex justify-between h-16 text-left items-center overflow-hidden">
                     <div class="w-12 text-center hidden id">{{ $user->id }}</div>
                     <div class="w-12 text-center hidden is_admin">{{ $user->is_admin }}</div>
                     <div class="w-12 text-center nip">{{ $user->nip }}</div>
@@ -87,10 +87,15 @@
                         @endif
 
                         {{-- Statistik Riwayat Cuti --}}
+                        @if (DB::table('riwayat_cutis')->where('user_id', $user->id)->count() > 0)
                         <button class="statistik" onclick="showModalStatistik(this.parentElement.parentElement)">
                             <i class="fa-solid fa-chart-pie fa-xl"></i>
                         </button>
-
+                        @else
+                        <button class="statistik" onclick="nullStatistik()">
+                            <i class="fa-solid fa-chart-pie fa-xl"></i>
+                        </button>
+                        @endif
 
                         {{-- Edit user --}}
                         <button class="edit" type="submit" onclick="showModalEditUser(this.parentElement.parentElement)">
@@ -110,8 +115,8 @@
                     </div>
                 </div>
                 @endforeach
-                {{ $user_data->links() }}
             </div>
+            {{ $user_data->links() }}
             <div class="hidden modal-edit-user fixed w-full h-full bg-slate-800 bg-opacity-50 z-50 inset-0 flex justify-center items-center">
                 <div class="modal-conainer w-1/3 bg-white py-8 rounded-xl flex flex-col items-center">
                     <div class="w-full flex justify-end px-10">
@@ -177,6 +182,10 @@
 @section('script')
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
+        const nullStatistik = () =>{
+            alert('Belum memiliki riwayat cuti');
+        }
+
         const showModalEditUser = (e) =>{
             var inputId = e.querySelector('.id');
             var inputNip = e.querySelector('.nip');
@@ -210,38 +219,44 @@
 
             jQuery.ajax({
                 url: `/manajemen_user/statistik/${inputId.innerHTML}`,
-            })
-            .then(response => {
-                console.log(response[0].jumlah_cuti);
-                modalStatistik.classList.remove('hidden');
+                success: function(response){
+                    modalStatistik.classList.remove('hidden');
+                    
+                    const data = response.map((e)=>{
+                        return [e.nama_cuti, e.jumlah_cuti]
+                    })
 
-                var chart_data =[
-                    ['Jenis Cuti', 'Jumlah Cuti']
-                ]
+                    var chart_data =[
+                        ['Jenis Cuti', 'Jumlah Cuti'],
+                        ...data
+                    ]
 
-                chart_data.forEach(() => {
-                    chart_data.push([response[0].nama_cuti, response[0].jumlah_cuti])
-                })
-                google.charts.load("current", {packages:["corechart"]});
-                google.charts.setOnLoadCallback(drawChart);
-                function drawChart() {
-                var data = google.visualization.arrayToDataTable(chart_data);
 
-                var options = {
-                    slices: {
-                        0: {color: '#11b8ab'},
-                        1: {color: '#386D11'},
-                        2: {color: '#f5a623'},
-                        3: {color: '#985873'},
-                        4: {color: '#985D58'},
-                        5: {color: '#589398'},
+                    google.charts.load("current", {packages:["corechart"]});
+                    google.charts.setOnLoadCallback(drawChart);
+                    function drawChart() {
+                    var data = google.visualization.arrayToDataTable(chart_data);
+
+                    var options = {
+                        slices: {
+                            0: {color: '#11b8ab'},
+                            1: {color: '#386D11'},
+                            2: {color: '#f5a623'},
+                            3: {color: '#985873'},
+                            4: {color: '#985D58'},
+                            5: {color: '#589398'},
+                        }
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                    chart.draw(data, options);
                     }
-                };
-
-                var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-                chart.draw(data, options);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Belum memiliki data cuti");
                 }
             })
+
         }
 
         const closeStatistik = () =>{

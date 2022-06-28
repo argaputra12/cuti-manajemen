@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('image')->nullable();
             $table->set('is_admin', [1, 0])->default(0);
+            $table->unsignedBigInteger('konfigurasi_cutis_id')->nullable();
+            $table->foreign('konfigurasi_cutis_id')->references('id')->on('konfigurasi_cutis');
             $table->integer('sisa_cuti')->nullable();
             $table->rememberToken();
             $table->timestamps();

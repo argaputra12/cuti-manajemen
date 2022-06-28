@@ -69,13 +69,18 @@ class UpdateUserController extends Controller
             ->where('users.nama', 'like', '%' . $request->search . '%')
             ->select('users.id', 'users.nip', 'users.nama', 'users.alamat', 'users.department_id', 'departments.nama as nama_department', 'users.sisa_cuti', 'users.is_admin')
             ->join('departments', 'users.department_id', '=', 'departments.id')
+            ->orderBy('users.id', 'asc')
             ->paginate(10);
+
         } else {
             $user_data = DB::table('users')
             ->select('users.id', 'users.nip', 'users.nama', 'users.alamat', 'users.department_id', 'departments.nama as nama_department', 'users.sisa_cuti', 'users.is_admin')
             ->join('departments', 'users.department_id', '=', 'departments.id')
+            ->orderBy('users.id', 'asc')
             ->paginate(10);
+
         }
+
 
         $department_data = DB::table('departments')
             ->select('departments.id', 'departments.nama')
@@ -139,10 +144,10 @@ class UpdateUserController extends Controller
         // Get user riwayat cuti
         $riwayat_cuti = DB::table('riwayat_cutis')
         ->join('jenis_cutis', 'riwayat_cutis.jenis_cuti_id', '=', 'jenis_cutis.id')
-        ->select(DB::raw('COUNT(riwayat_cutis.id) as jumlah_cuti'), 'riwayat_cutis.user_id' , 'jenis_cutis.nama as nama_cuti')
+        ->select(DB::raw('COUNT(riwayat_cutis.id) as jumlah_cuti') , 'jenis_cutis.nama as nama_cuti')
         ->where('riwayat_cutis.user_id', $request->id)
         ->groupBy('jenis_cutis.nama')
-        ->groupBy('riwayat_cutis.user_id')
+        // ->groupBy('riwayat_cutis.user_id')
         ->get();
 
         // dd($riwayat_cuti);
