@@ -15,7 +15,7 @@ class KonfigurasiCuti extends Model
         'jumlah_cuti_maksimum'
     ];
 
-    public function riwayat_cutis(){
-        return $this->hasMany('App\RiwayatCuti');
+    public function users(){
+        return $this->hasMany('App\User');
     }
 }

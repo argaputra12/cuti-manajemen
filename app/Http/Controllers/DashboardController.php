@@ -25,10 +25,15 @@ class DashboardController extends Controller
             ->groupBy('riwayat_cutis.id')
             ->paginate(5);
 
-            // dd($riwayat_cuti);
-            // $jenis_cuti = DB::table("jenis_cutis")->select('id')->get();
+            // Update cuti tahunan
+            if(date('Y-m-d', strtotime('first day of january this year'))){
+                DB::table('users')
+                ->join('konfigurasi_cutis', 'konfigurasi_cutis.id', '=', 'users.konfigurasi_cutis_id')
+                ->update([
+                    'sisa_cuti' => DB::table('konfigurasi_cutis')->where('tahun', date('Y'))->first()->jumlah_cuti_maksimum - DB::table('konfigurasi_cutis')->where('tahun', date('Y'))->first()->jumlah_cuti_bersama
+                ]);
+            }
 
-            // dd($a);
 
             return view('dashboard',compact('riwayat_cuti'));
 

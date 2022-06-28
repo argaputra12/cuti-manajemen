@@ -27,7 +27,8 @@ class User extends Authenticatable
         'password',
         'department_id',
         'sisa_cuti',
-        'image'
+        'image',
+        'konfigurasi_cutis_id'
     ];
 
     /**
@@ -57,5 +58,10 @@ class User extends Authenticatable
     function riwayatCuti()
     {
         return $this->hasMany('App\Models\RiwayatCuti');
+    }
+
+    function konfigurasiCuti()
+    {
+        return $this->belongsTo('App\Models\KonfigurasiCuti');
     }
 }

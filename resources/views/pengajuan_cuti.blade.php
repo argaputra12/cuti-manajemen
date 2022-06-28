@@ -65,7 +65,7 @@
                         <input type="date" name="tanggal_selesai" required class="h-10 border-2 rounded-lg px-2">
                     </div>
                     <div class="my-3 h-16 flex items-center border-gray-300 border-2 font-medium rounded-lg hover:bg-gray-300 cursor-pointer text-lg">
-                        <input accept="application/pdf" type="file" name="bukti_cuti" required class="absolute opacity-0 " placeholder="Upload bukti cuti" onchange="changeLabel()">
+                        <input accept="application/pdf" type="file" name="bukti_cuti" required class="absolute opacity-0 h-16 w-[1035px]" placeholder="Upload bukti cuti" onchange="changeLabel()">
                         <label for="bukti_cuti" class="label-bukticuti inline-block w-full text-center px-1 text-gray-400">Upload bukti cuti</label>
                     </div>
                     <input type="submit" value="Ajukan Cuti" class="w-full my-4 btn-css ajukan-cuti bg-blue-500 hover:bg-blue-800">

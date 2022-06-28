@@ -20,12 +20,15 @@ return new class extends Migration
             $table->string('nama')->nullable();
             $table->string('alamat')->nullable();
             $table->string('jenis_kelamin')->nullable();
+            $table->string('telepon')->nullable();
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('image')->nullable();
             $table->set('is_admin', [1, 0])->default(0);
+            $table->unsignedBigInteger('konfigurasi_cutis_id')->nullable();
+            $table->foreign('konfigurasi_cutis_id')->references('id')->on('konfigurasi_cutis');
             $table->integer('sisa_cuti')->nullable();
             $table->rememberToken();
             $table->timestamps();

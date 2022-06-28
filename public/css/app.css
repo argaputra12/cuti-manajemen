@@ -10862,6 +10862,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-\[120vh\] {
   height: 120vh;
 }
+.h-auto {
+  height: auto;
+}
 .min-h-\[450px\] {
   min-height: 450px;
 }
@@ -10912,6 +10915,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-\[400px\] {
   width: 400px;
+}
+.w-\[10035\] {
+  width: 10035;
+}
+.w-\[1035px\] {
+  width: 1035px;
 }
 .cursor-pointer {
   cursor: pointer;
