@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nama')->nullable();
             $table->string('alamat')->nullable();
             $table->string('jenis_kelamin')->nullable();
+            $table->string('telepon')->nullable();
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments');
             $table->string('email')->unique();
