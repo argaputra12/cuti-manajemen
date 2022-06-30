@@ -27,12 +27,17 @@ class ApprovalCutiController extends Controller
     public function approved(Request $request){
 
 
-
-
         // Update sisa cuti
         DB::table('riwayat_cutis')->where('id', $request->id )->update([
             'status_cuti' => 'Approved',
         ]);
+
+    
+       DB::table('users')->join('riwayat_cutis', 'riwayat_cutis.user_id', '=', 'users.id')
+         ->where('riwayat_cutis.id', $request->id)
+         ->update([
+            'sisa_cuti' => DB::table('users')->where('id', $request->user_id)->first()->sisa_cuti - $request->durasi_cuti
+         ]);
 
         return back();
 

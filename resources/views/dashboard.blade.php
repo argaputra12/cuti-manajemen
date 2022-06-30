@@ -47,8 +47,8 @@
                     approval cuti dari atasan
                 </span></span>
             <div class="daftar-container">
-                <div class="daftar-table">
-                    <table class="table-css table-bordered mb-4">
+                <div class="daftar-table mb-4">
+                    <table class="table-css table-bordered">
                         <thead>
                             <tr class="h-7 text-base">
                                 <th>No</th>
@@ -108,10 +108,10 @@
                             @endif
                         </tbody>
                     </table>
-                    @auth
-                    {{ $riwayat_cuti->links() }}
-                    @endauth
                 </div>
+                @auth
+                {{ $riwayat_cuti->links() }}
+                @endauth
             </div>
             <div class="box-content-css algn-mid flex-col-css">
                 <div class="footer">

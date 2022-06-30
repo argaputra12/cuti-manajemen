@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JenisCuti;
 use App\Models\RiwayatCuti;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,11 @@ class DashboardController extends Controller
             ->paginate(5);
 
             // Update cuti tahunan
-            if(date('Y-m-d', strtotime('first day of january this year'))){
+            $newYear = new Carbon('first day of January this year');
+            $now = new Carbon(now());
+
+            if($now == $newYear){
+
                 DB::table('users')
                 ->join('konfigurasi_cutis', 'konfigurasi_cutis.id', '=', 'users.konfigurasi_cutis_id')
                 ->update([
