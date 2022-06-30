@@ -64,6 +64,8 @@
                                     <form action="{{ route('admin.approvalCuti.approved') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $item->id }}">
+                                        <input type="hidden" name="user_id" value="{{ $item->user_id }}">
+                                        <input type="hidden" name="durasi_cuti" value="{{ $item->durasi_cuti }}">
                                         <button type="submit" name="submit" value="Submit"
                                             class="bg-none px-2 border-none pointer">
                                             <i class="fa-solid fa-check"></i>

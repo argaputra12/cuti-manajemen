@@ -429,6 +429,7 @@ input:checked ~ div .hb:last-child {
   display: table;
   border-spacing: 0;
   width: 100%;
+  margin-bottom: 30px;
 }
 .table-bordered {
   border: #dddddd solid 1px;

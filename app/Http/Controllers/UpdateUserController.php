@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Svg\Tag\Rect;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class UpdateUserController extends Controller
 {
+    use ValidatesRequests;
     public function __construct()
     {
         $this->middleware('auth');
